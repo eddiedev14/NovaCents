@@ -10,6 +10,12 @@
     left: 0;
     border-top-right-radius: 50px;
     color: #fff;
+    transform: translateX(-280px);
+    transition: .3s ease-in-out transform;
+}
+
+.nav.visible{
+    transform: translateX(0);
 }
 
 .nav__content{

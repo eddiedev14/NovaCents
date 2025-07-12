@@ -20,6 +20,10 @@
     font-family: "Inter", sans-serif;
 }
 
+body{
+    padding: 32px 24px;
+}
+
 input, label, button, select, textarea{
     font-family: "Inter", sans-serif;
 }
