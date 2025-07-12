@@ -101,6 +101,7 @@
 
 .card__effective{
     width: 224px;
+    height: fit-content;
     border: 2px solid var(--primary);
     border-radius: 10px;
     padding: 20px;
@@ -128,3 +129,39 @@
 .effective__balance{
     font-size: 26px;
 }
+
+@media screen and (min-width: 744px){
+    .cards{
+        display: grid;
+        grid-template-columns: min-content min-content;
+        gap: 48px;
+    }
+
+    .credit__card--add{
+        display: flex;
+        background-image: none;
+        border: 2px dashed #6B6F7B;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        color: #6B6F7B;
+        cursor: pointer;
+        transition: .3s ease-in-out scale;
+    }
+
+    .credit__card--add:hover{
+        scale: 1.05;
+    }
+
+    .credit__card--add i{
+        font-size: 32px;
+    }
+
+    .credit__title{
+        font-weight: 500;
+        font-size: 16px;
+    }
+}
+
