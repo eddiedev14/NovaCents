@@ -33,3 +33,17 @@ input, label, button, select, textarea{
         padding: 40px 36px;
     }
 }
+
+@media screen and (min-width: 1280px) {
+    body{
+        padding: 50px 64px 50px 0;
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        grid-template-areas: "sidebar content";
+        gap: 64px;
+    }
+
+    main{
+        grid-area: content;
+    }
+}

@@ -75,3 +75,10 @@
     justify-content: center;
     gap: 24px;
 }
+
+@media screen and (min-width: 1280px) {
+    .nav{
+        grid-area: sidebar;
+        transform: translateX(0);
+    }
+}
