@@ -28,6 +28,12 @@ input, label, button, select, textarea{
     font-family: "Inter", sans-serif;
 }
 
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
 @media screen and (min-width: 744px) {
     body{
         padding: 40px 36px;

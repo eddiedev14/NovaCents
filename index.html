@@ -14,6 +14,7 @@
     <link rel="manifest" href="/public/favicon/site.webmanifest" />
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/src/css/index.css">
 </head>
 <body>
@@ -28,17 +29,17 @@
                     <li class="nav__item">
                         <div class="nav__selected"></div>
                         <a href="/index.html">
-                            <img src="/public/icons/dashboard.svg" alt="Dashboard icon"> Dashboard
+                            <i class="ri-dashboard-fill"></i> Dashboard
                         </a>
                     </li>
                     <li class="nav__item">
                         <a href="/src/pages/transactions.html">
-                            <img src="/public/icons/transactions.svg" alt="Transactions icon"> Transacciones
+                            <i class="ri-arrow-up-down-line"></i> Transacciones
                         </a>
                     </li>
                     <li class="nav__item">
                         <a href="/src/pages/account.html">
-                            <img src="/public/icons/account.svg" alt="Account icon"> Mi Cuenta
+                            <i class="ri-bank-card-line"></i> Mi Cuenta
                         </a>
                     </li>
                 </ul>
@@ -67,9 +68,11 @@
 
     <main>
         <header class="header">
-            <img src="/public/icons/menu.svg" alt="Menu Icon" id="sidebar__menu">
+            <button type="button" id="sidebar__menu"><i class="ri-menu-line"></i></button>
             <h1>Panel de Control</h1>
         </header>
+
+        
     </main>
 
     <script type="module" src="/src/js/dashboard.js"></script>
