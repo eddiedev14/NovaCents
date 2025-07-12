@@ -165,3 +165,8 @@
     }
 }
 
+@media screen and (min-width: 1280px){
+    .credit__cards{
+        flex-direction: row;
+    }
+}
