@@ -14,6 +14,7 @@
     <link rel="manifest" href="/public/favicon/site.webmanifest" />
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/src/css/index.css">
 </head>
 <body>
@@ -28,17 +29,17 @@
                     <li class="nav__item">
                         <div class="nav__selected"></div>
                         <a href="/index.html">
-                            <img src="/public/icons/dashboard.svg" alt="Dashboard icon"> Dashboard
+                            <i class="ri-dashboard-fill"></i> Dashboard
                         </a>
                     </li>
                     <li class="nav__item">
                         <a href="/src/pages/transactions.html">
-                            <img src="/public/icons/transactions.svg" alt="Transactions icon"> Transacciones
+                            <i class="ri-arrow-up-down-line"></i> Transacciones
                         </a>
                     </li>
                     <li class="nav__item">
                         <a href="/src/pages/account.html">
-                            <img src="/public/icons/account.svg" alt="Account icon"> Mi Cuenta
+                            <i class="ri-bank-card-line"></i> Mi Cuenta
                         </a>
                     </li>
                 </ul>
@@ -67,9 +68,47 @@
 
     <main>
         <header class="header">
-            <img src="/public/icons/menu.svg" alt="Menu Icon" id="sidebar__menu">
+            <button type="button" id="sidebar__menu"><i class="ri-menu-line"></i></button>
             <h1>Panel de Control</h1>
         </header>
+
+        <section class="cards">
+            <div class="credit__cards">
+                <article class="credit__card">
+                    <img src="./public/images/visa.png" alt="Payment method">
+                    <h5 class="credit__subtitle">Saldo</h5>
+                    <h4 class="credit__balance">$11.000.000</h4>
+                    <span class="credit__number">5294 2436 4780 2468</span>
+                    <div class="credit__bottom">
+                        <div class="credit__column">
+                            <h5 class="column__title">NOMBRE</h5>
+                            <strong class="column__value">TODO CÓDIGO</strong>
+                        </div>
+                        <div class="credit__column">
+                            <h5 class="column__title">FECHA EXPIRACIÓN</h5>
+                            <strong class="column__value">12/25</strong>
+                        </div>
+                    </div>
+
+                    <div class="credit__buttons">
+                        <button type="button" aria-label="Add credit card"><i class="ri-add-line"></i></button>
+                        <button type="button" aria-label="Edit credit card"><i class="ri-pencil-fill"></i></button>
+                    </div>
+                </article>
+
+                <article class="credit__card credit__card--add" tabindex="0">
+                    <i class="ri-add-circle-line"></i>
+                    <h5 class="credit__title">Añadir Tarjeta</h5>
+                </article>
+            </div>
+
+            <div class="card__effective">
+                <div class="effective_icon"><i class="ri-wallet-fill"></i></div>
+                <h5 class="effective__title">Total Efectivo</h5>
+                <h4 class="effective__balance">$5.420.000</h4>
+                <button type="button" class="effective__edit" aria-label="Edit effective balance"><i class="ri-pencil-fill"></i></button>
+            </div>
+        </section>
     </main>
 
     <script type="module" src="/src/js/dashboard.js"></script>
