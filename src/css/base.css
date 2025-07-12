@@ -20,6 +20,30 @@
     font-family: "Inter", sans-serif;
 }
 
+body{
+    padding: 32px 24px;
+}
+
 input, label, button, select, textarea{
     font-family: "Inter", sans-serif;
+}
+
+@media screen and (min-width: 744px) {
+    body{
+        padding: 40px 36px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    body{
+        padding: 50px 64px 50px 0;
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        grid-template-areas: "sidebar content";
+        gap: 64px;
+    }
+
+    main{
+        grid-area: content;
+    }
 }

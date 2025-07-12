@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Novacents</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/public/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/public/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/public/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="NovaCents" />
+    <link rel="manifest" href="/public/favicon/site.webmanifest" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/src/css/index.css">
+</head>
+<body>
+    <nav class="nav" tabindex="0">
+        <div class="nav__content">
+            <div class="nav__logo">
+                <img src="/public/images/logo.png" alt="Novacents logo" class="nav__img">
+                <h3 class="nav__name">NovaCents</h3>
+            </div>
+            <div class="nav__links">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <div class="nav__selected"></div>
+                        <a href="/index.html">
+                            <img src="/public/icons/dashboard.svg" alt="Dashboard icon"> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/src/pages/transactions.html">
+                            <img src="/public/icons/transactions.svg" alt="Transactions icon"> Transacciones
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/src/pages/account.html">
+                            <img src="/public/icons/account.svg" alt="Account icon"> Mi Cuenta
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav__socials">
+            <ul class="social__list">
+                <li class="social__item">
+                    <a href="https://github.com/eddiedev14/NovaCents" target="_blank">
+                        <img src="/public/icons/github.svg" alt="Github Logo">
+                    </a>
+                </li>
+                <li class="social__item">
+                    <a href="https://www.linkedin.com/in/eddiedev14/" target="_blank">
+                        <img src="/public/icons/linkedin.svg" alt="Linkedin Logo">
+                    </a>
+                </li>
+                <li class="social__item">
+                    <a href="https://www.youtube.com/@todocodigo" target="_blank">
+                        <img src="/public/icons/youtube.svg" alt="Youtube Logo">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="header">
+            <img src="/public/icons/menu.svg" alt="Menu Icon" id="sidebar__menu">
+            <h1>Panel de Control</h1>
+        </header>
+    </main>
+
+    <script type="module" src="/src/js/dashboard.js"></script>
+</body>
+</html>
