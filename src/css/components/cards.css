@@ -1,0 +1,179 @@
+.cards{
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+/* Credit Cards */
+
+.credit__cards{
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.credit__card{
+    width: 288px;
+    min-height: 168px;
+    border-radius: 12px;
+    padding: 12px 18px;
+    background-image: url("/public/backgrounds/green-background.png");
+    background-position: center;
+    color: #fff;
+    position: relative;
+}
+
+.credit__card--add{
+    display: none;
+}
+
+.credit__card img{
+    position: absolute;
+    right: 18px;
+    top: 14px;
+}
+
+.credit__subtitle{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.credit__balance{
+    font-size: 28px;
+    margin-bottom: 11px;
+}
+
+.credit__number{
+    display: inline-block;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 11px;
+}
+
+.credit__bottom{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.column__title{
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.column__value{
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.credit__buttons{
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    right: 10px;
+    bottom: -16px;
+}
+
+.credit__buttons button, .effective__edit{
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid #E1E6EF;
+    cursor: pointer;
+    transition: .3s ease-in-out scale;
+}
+
+.credit__buttons button:hover{
+    scale: 1.1;
+}
+
+.credit__buttons button:first-child{
+    color: var(--primary);
+}
+
+.credit__buttons button:last-child, .effective__edit{
+    color: var(--blue);
+}
+
+/* Effective Card */
+
+.card__effective{
+    width: 224px;
+    height: fit-content;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+}
+
+.effective_icon{
+    width: 56px;
+    height: 56px;
+    background-color: rgba(37, 201, 53, 0.2);
+    color: var(--primary);
+    border-radius: 50%;
+    font-size: 28px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 10px;
+}
+
+.effective__title{
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 4px;
+    opacity: 0.8;
+}
+
+.effective__balance{
+    font-size: 26px;
+}
+
+.effective__edit{
+    position: absolute;
+    right: 10px;
+    bottom: -16px;
+}
+
+@media screen and (min-width: 744px){
+    .cards{
+        display: grid;
+        grid-template-columns: min-content min-content;
+        gap: 48px;
+    }
+
+    .credit__card--add{
+        display: flex;
+        background-image: none;
+        border: 2px dashed #6B6F7B;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        color: #6B6F7B;
+        cursor: pointer;
+        transition: .3s ease-in-out scale;
+    }
+
+    .credit__card--add:hover{
+        scale: 1.05;
+    }
+
+    .credit__card--add i{
+        font-size: 32px;
+    }
+
+    .credit__title{
+        font-weight: 500;
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 1280px){
+    .credit__cards{
+        flex-direction: row;
+    }
+}
