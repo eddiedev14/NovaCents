@@ -11,3 +11,9 @@
 h1{
     font-size: 28px;
 }
+
+@media screen and (min-width: 744px) {
+    h1{
+        font-size: 36px;
+    }
+}
