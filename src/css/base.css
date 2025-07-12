@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root{
+    --primary: #0ACF83;
+    --black: #111;
+
+    --gray: #7C7C7C;
+    --light-gray: #6B6F7B;
+    --pale-gray: #E1E6EF;
+
+    --red: #F22221;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+}
+
+input, label, button, select, textarea{
+    font-family: "Inter", sans-serif;
+}
