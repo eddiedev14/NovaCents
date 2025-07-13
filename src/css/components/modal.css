@@ -31,6 +31,7 @@
 .modal__container {
   background-color: white;
   max-width: 327px;
+  width: 100%;
   border-radius: 8px;
   padding: 16px 0;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -100,7 +101,7 @@
     appearance: none;
     background-image: url("/public/icons/arrow-down.svg");
     background-repeat: no-repeat;
-    background-position: 215px center;
+    background-position: 250px center;
 }
 
 .form__buttons{
@@ -142,5 +143,28 @@
     .modal__paragraph{
         font-weight: 400;
         font-size: 14px;
+    }
+
+    .form__grid{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .form__grid .form__group{
+        max-width: 240px;
+        width: 100%;
+    }
+
+    .form__grid .form__group:first-child{
+        padding-right: 0;
+    }
+
+    .form__grid .form__group:last-child{
+        padding-left: 0;
+    }
+
+    .form__input--select{
+        background-position: 190px center;
     }
 }
