@@ -116,3 +116,18 @@
     color: #fff;
     font-weight: 600;
 }
+
+@media screen and (min-width: 744px) {
+    .modal__container {
+        max-width: 500px;
+    }
+
+    .modal__title{
+        font-size: 20px;
+    }
+
+    .modal__paragraph{
+        font-weight: 400;
+        font-size: 14px;
+    }
+}
