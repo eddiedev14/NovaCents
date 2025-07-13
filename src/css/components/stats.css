@@ -97,3 +97,17 @@
         background-color: #6B6F7B;
     }
 }
+
+@media screen and (min-width: 1280px) {
+    .bar__header{
+        display: flex;
+        gap: 48px;
+        align-items: center;
+    }
+
+    .bar__chart{
+        width: 620px;
+        height: 295px;
+        background-color: #6B6F7B;
+    }
+}
