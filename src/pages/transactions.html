@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transacciones - Novacents</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/public/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/public/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/public/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="NovaCents" />
+    <link rel="manifest" href="/public/favicon/site.webmanifest" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/src/css/transactions.css">
+</head>
+<body>
+    <nav class="nav" tabindex="0">
+        <div class="nav__content">
+            <div class="nav__logo">
+                <img src="/public/images/logo.png" alt="Novacents logo" class="nav__img">
+                <h3 class="nav__name">NovaCents</h3>
+            </div>
+            <div class="nav__links">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="/index.html">
+                            <i class="ri-dashboard-fill"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <div class="nav__selected"></div>
+                        <a href="/src/pages/transactions.html">
+                            <i class="ri-arrow-up-down-line"></i> Transacciones
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/src/pages/account.html">
+                            <i class="ri-bank-card-line"></i> Mi Cuenta
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav__socials">
+            <ul class="social__list">
+                <li class="social__item">
+                    <a href="https://github.com/eddiedev14/NovaCents" target="_blank">
+                        <img src="/public/icons/github.svg" alt="Github Logo">
+                    </a>
+                </li>
+                <li class="social__item">
+                    <a href="https://www.linkedin.com/in/eddiedev14/" target="_blank">
+                        <img src="/public/icons/linkedin.svg" alt="Linkedin Logo">
+                    </a>
+                </li>
+                <li class="social__item">
+                    <a href="https://www.youtube.com/@todocodigo" target="_blank">
+                        <img src="/public/icons/youtube.svg" alt="Youtube Logo">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="header">
+            <div class="header__wrapper">
+                <div class="header__title">
+                    <button type="button" id="sidebar__menu"><i class="ri-menu-line"></i></button>
+                    <h1>Transacciones</h1>
+                </div>
+                <div class="header__buttons">
+                    <button type="button" class="header__btn" data-micromodal-trigger="modal-categorie">Crear Categoría</button>
+                    <button type="button" class="header__btn header__btn--primary" data-micromodal-trigger="modal-transaction">Nueva Transacción</button>
+                </div>
+            </div>
+        </header>
+    </main>
+
+    <!-- Modals -->
+
+    <div class="modal micromodal-slide" id="modal-categorie" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1">
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-categorie-title">
+                <header class="modal__header">
+                    <div class="header__icon"><i class="ri-pie-chart-2-line"></i></div>
+                    <h3 class="modal__title">Nueva Categoría</h3>
+                    <p class="modal__paragraph">Agrega una categoría personalizada para organizar mejor tus ingresos y gastos</p>
+                </header>
+                <main class="modal__content" id="modal-categorie-content">
+                    <form action="#">
+                        <div class="form__group">
+                            <label for="categorie-name" class="form__label">Nombre</label>
+                            <input type="text" name="categorie-name" id="categorie-name" class="form__input">
+                        </div>
+
+                        <div class="form__buttons">
+                            <button type="button" class="form__btn" data-micromodal-close>Cancelar</button>
+                            <button type="submit" class="form__btn form__btn--submit">Crear Categoría</button>
+                        </div>
+                    </form>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal micromodal-slide" id="modal-transaction" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1">
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-categorie-title">
+                <header class="modal__header">
+                    <h3 class="modal__title">Nueva Transacción</h3>
+                </header>
+                <main class="modal__content" id="modal-transaction-content">
+                    <form action="#">
+                        <div class="form__group">
+                            <label for="transaction-name" class="form__label">Nombre</label>
+                            <input type="text" name="transaction-name" id="transaction-name" class="form__input">
+                        </div>
+                        
+                        <div class="form__group">
+                            <label for="transaction-description" class="form__label">Descripción</label>
+                            <input type="text" name="transaction-description" id="transaction-description" class="form__input">
+                        </div>
+
+                        <div class="form__grid">
+                            <div class="form__group">
+                                <label for="transaction-method" class="form__label">Medio</label>
+                                <select name="transaction-method" id="transaction-method" class="form__input form__input--select"></select>
+                            </div>
+
+                            <div class="form__group">
+                                <label for="transaction-type" class="form__label">Tipo</label>
+                                <select name="transaction-type" id="transaction-type" class="form__input form__input--select"></select>
+                            </div>
+                        </div>
+
+                        <div class="form__grid">
+                            <div class="form__group">
+                                <label for="transaction-categorie" class="form__label">Categoria</label>
+                                <select name="transaction-categorie" id="transaction-categorie" class="form__input form__input--select"></select>
+                            </div>
+
+                            <div class="form__group">
+                                <label for="transaction-amount" class="form__label">Monto</label>
+                                <input type="number" name="transaction-amount" id="transaction-amount" class="form__input">
+                            </div>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="transaction-date" class="form__label">Fecha</label>
+                            <input type="date" name="transaction-date" id="transaction-date" class="form__input">
+                        </div>
+
+                        <div class="form__buttons">
+                            <button type="button" class="form__btn" data-micromodal-close>Cancelar</button>
+                            <button type="submit" class="form__btn form__btn--submit">Crear Categoría</button>
+                        </div>
+                    </form>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/js/transactions.js"></script>
+</body>
+</html>

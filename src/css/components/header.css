@@ -1,10 +1,18 @@
-.header{
+.header, .header__title{
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-.header button{
+.header__wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+#sidebar__menu{
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -15,14 +23,42 @@ h1{
     font-size: 28px;
 }
 
+/* Header Buttons */
+
+.header__buttons{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.header__btn{
+    padding: 12px 16px;
+    background-color: #fff;
+    border: 1px solid var(--pale-gray);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.header__btn--primary{
+    background-color: var(--primary);
+    color: #fff;
+    font-weight: 700;
+}
+
 @media screen and (min-width: 744px) {
     h1{
         font-size: 36px;
     }
+
+    .header__btn{
+        font-size: 15px;
+    }
 }
 
 @media screen and (min-width: 1280px) {
-    .header button{
+    #sidebar__menu{
         display: none;
     }
 
