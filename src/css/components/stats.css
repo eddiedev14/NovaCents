@@ -82,3 +82,18 @@
     height: 220px;
     background-color: #6B6F7B;
 }
+
+@media screen and (min-width: 744px) {
+    .stats__grid{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 36px;
+    }
+
+    .bar__chart{
+        width: 345px;
+        height: 290px;
+        background-color: #6B6F7B;
+    }
+}
