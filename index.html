@@ -109,6 +109,52 @@
                 <button type="button" class="effective__edit" aria-label="Edit effective balance"><i class="ri-pencil-fill"></i></button>
             </div>
         </section>
+
+        <section class="stats">
+            <h2 class="stats__title">Estadísticas Financieras</h2>
+            <div class="stats__grid">
+                <div class="stats__bar">
+                    <div class="bar__header">
+                        <div class="header__overview">
+                            <h5 class="overview__title">Ganancias, Septiembre</h5>
+                            <h4 class="overview__balance">$12.950.000</h4>
+                        </div>
+                        <form action="#">
+                            <select aria-label="Month select" name="month" id="month" class="select__rounded">
+                                <option value="enero" selected>Enero</option>
+                                <option value="febrero">Febrero</option>
+                                <option value="marzo">Marzo</option>
+                                <option value="abril">Abril</option>
+                                <option value="mayo">Mayo</option>
+                                <option value="junio">Junio</option>
+                                <option value="julio">Julio</option>
+                                <option value="agosto">Agosto</option>
+                                <option value="septiembre">Septiembre</option>
+                                <option value="octubre">Octubre</option>
+                                <option value="noviembre">Noviembre</option>
+                                <option value="diciembre">Diciembre</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="bar__chart"></div>
+                </div>
+                <div class="stats__pie">
+                    <form action="#">
+                        <select aria-label="Filter by feature" name="month" id="month" class="select__rounded select__rounded--large">
+                            <option value="" selected>Balance General</option>
+                            <option value="categoria">Categorias</option>
+                            <option value="medios-pago">Medios de Pago</option>
+                        </select>
+                        <select aria-label="Filter by feature" name="month" id="month" class="select__simple">
+                            <option value="week" selected>Últimos 7 días</option>
+                            <option value="month">Este mes</option>
+                            <option value="year">Este año</option>
+                        </select>
+                    </form>
+                    <div class="pie__chart"></div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <script type="module" src="/src/js/dashboard.js"></script>
