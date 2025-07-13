@@ -76,6 +76,12 @@
     flex-direction: column;
 }
 
+.form__grid{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .form__label{
     font-weight: 400;
     font-size: 14px;
@@ -88,6 +94,13 @@
     font-size: 16px;
     border-radius: 8px;
     border: 1px solid var(--pale-gray);
+}
+
+.form__input--select{
+    appearance: none;
+    background-image: url("/public/icons/arrow-down.svg");
+    background-repeat: no-repeat;
+    background-position: 215px center;
 }
 
 .form__buttons{

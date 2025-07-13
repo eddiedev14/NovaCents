@@ -75,7 +75,7 @@
                 </div>
                 <div class="header__buttons">
                     <button type="button" class="header__btn" data-micromodal-trigger="modal-categorie">Crear Categoría</button>
-                    <button type="button" class="header__btn header__btn--primary">Nueva Transacción</button>
+                    <button type="button" class="header__btn header__btn--primary" data-micromodal-trigger="modal-transaction">Nueva Transacción</button>
                 </div>
             </div>
         </header>
@@ -108,6 +108,62 @@
         </div>
     </div>
 
+    <div class="modal micromodal-slide" id="modal-transaction" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1">
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-categorie-title">
+                <header class="modal__header">
+                    <h3 class="modal__title">Nueva Transacción</h3>
+                </header>
+                <main class="modal__content" id="modal-transaction-content">
+                    <form action="#">
+                        <div class="form__group">
+                            <label for="transaction-name" class="form__label">Nombre</label>
+                            <input type="text" name="transaction-name" id="transaction-name" class="form__input">
+                        </div>
+                        
+                        <div class="form__group">
+                            <label for="transaction-description" class="form__label">Descripción</label>
+                            <input type="text" name="transaction-description" id="transaction-description" class="form__input">
+                        </div>
+
+                        <div class="form__grid">
+                            <div class="form__group">
+                                <label for="transaction-method" class="form__label">Medio</label>
+                                <select name="transaction-method" id="transaction-method" class="form__input form__input--select"></select>
+                            </div>
+
+                            <div class="form__group">
+                                <label for="transaction-type" class="form__label">Tipo</label>
+                                <select name="transaction-type" id="transaction-type" class="form__input form__input--select"></select>
+                            </div>
+                        </div>
+
+                        <div class="form__grid">
+                            <div class="form__group">
+                                <label for="transaction-categorie" class="form__label">Categoria</label>
+                                <select name="transaction-categorie" id="transaction-categorie" class="form__input form__input--select"></select>
+                            </div>
+
+                            <div class="form__group">
+                                <label for="transaction-amount" class="form__label">Monto</label>
+                                <input type="number" name="transaction-amount" id="transaction-amount" class="form__input">
+                            </div>
+                        </div>
+
+                        <div class="form__group">
+                            <label for="transaction-date" class="form__label">Fecha</label>
+                            <input type="date" name="transaction-date" id="transaction-date" class="form__input">
+                        </div>
+
+                        <div class="form__buttons">
+                            <button type="button" class="form__btn" data-micromodal-close>Cancelar</button>
+                            <button type="submit" class="form__btn form__btn--submit">Crear Categoría</button>
+                        </div>
+                    </form>
+                </main>
+            </div>
+        </div>
+    </div>
 
     <script type="module" src="/src/js/transactions.js"></script>
 </body>
