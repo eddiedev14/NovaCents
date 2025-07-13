@@ -15,7 +15,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/src/css/index.css">
+    <link rel="stylesheet" href="/src/css/transactions.css">
 </head>
 <body>
     <nav class="nav" tabindex="0">
@@ -74,12 +74,40 @@
                     <h1>Transacciones</h1>
                 </div>
                 <div class="header__buttons">
-                    <button type="button" class="header__btn">Crear Categoría</button>
+                    <button type="button" class="header__btn" data-micromodal-trigger="modal-categorie">Crear Categoría</button>
                     <button type="button" class="header__btn header__btn--primary">Nueva Transacción</button>
                 </div>
             </div>
         </header>
     </main>
+
+    <!-- Modals -->
+
+    <div class="modal micromodal-slide" id="modal-categorie" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1">
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-categorie-title">
+                <header class="modal__header">
+                    <div class="header__icon"><i class="ri-pie-chart-2-line"></i></div>
+                    <h3 class="modal__title">Nueva Categoría</h3>
+                    <p class="modal__paragraph">Agrega una categoría personalizada para organizar mejor tus ingresos y gastos</p>
+                </header>
+                <main class="modal__content" id="modal-categorie-content">
+                    <form action="#">
+                        <div class="form__group">
+                            <label for="categorie-name" class="form__label">Nombre</label>
+                            <input type="text" name="categorie-name" id="categorie-name" class="form__input">
+                        </div>
+
+                        <div class="form__buttons">
+                            <button type="button" class="form__btn" data-micromodal-close>Cancelar</button>
+                            <button type="submit" class="form__btn form__btn--submit">Crear Categoría</button>
+                        </div>
+                    </form>
+                </main>
+            </div>
+        </div>
+    </div>
+
 
     <script type="module" src="/src/js/transactions.js"></script>
 </body>
