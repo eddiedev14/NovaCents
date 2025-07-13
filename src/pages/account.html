@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuenta - Novacents</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/public/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/public/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/public/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="NovaCents" />
+    <link rel="manifest" href="/public/favicon/site.webmanifest" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/src/css/account.css">
+</head>
+<body>
+    <nav class="nav" tabindex="0">
+        <div class="nav__content">
+            <div class="nav__logo">
+                <img src="/public/images/logo.png" alt="Novacents logo" class="nav__img">
+                <h3 class="nav__name">NovaCents</h3>
+            </div>
+            <div class="nav__links">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="/index.html">
+                            <i class="ri-dashboard-fill"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="/src/pages/transactions.html">
+                            <i class="ri-arrow-up-down-line"></i> Transacciones
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <div class="nav__selected"></div>
+                        <a href="/src/pages/account.html">
+                            <i class="ri-bank-card-line"></i> Mi Cuenta
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav__socials">
+            <ul class="social__list">
+                <li class="social__item">
+                    <a href="https://github.com/eddiedev14/NovaCents" target="_blank">
+                        <img src="/public/icons/github.svg" alt="Github Logo">
+                    </a>
+                </li>
+                <li class="social__item">
+                    <a href="https://www.linkedin.com/in/eddiedev14/" target="_blank">
+                        <img src="/public/icons/linkedin.svg" alt="Linkedin Logo">
+                    </a>
+                </li>
+                <li class="social__item">
+                    <a href="https://www.youtube.com/@todocodigo" target="_blank">
+                        <img src="/public/icons/youtube.svg" alt="Youtube Logo">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="header">
+            <button type="button" id="sidebar__menu"><i class="ri-menu-line"></i></button>
+            <h1>Panel de Control</h1>
+        </header>
+
+        <section class="cards">
+            <div class="credit__cards">
+                <article class="credit__card">
+                    <img src="/public/images/visa.png" alt="Payment method">
+                    <h5 class="credit__subtitle">Saldo</h5>
+                    <h4 class="credit__balance">$11.000.000</h4>
+                    <span class="credit__number">5294 2436 4780 2468</span>
+                    <div class="credit__bottom">
+                        <div class="credit__column">
+                            <h5 class="column__title">NOMBRE</h5>
+                            <strong class="column__value">TODO CÓDIGO</strong>
+                        </div>
+                        <div class="credit__column">
+                            <h5 class="column__title">FECHA EXPIRACIÓN</h5>
+                            <strong class="column__value">12/25</strong>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="credit__button" aria-label="Edit credit card"><i class="ri-pencil-fill"></i></button>
+                </article>
+
+                <article class="credit__card credit__card--add" data-micromodal-trigger="modal-credit-card" tabindex="0">
+                    <i class="ri-add-circle-line"></i>
+                    <h5 class="credit__title">Añadir Tarjeta</h5>
+                </article>
+            </div>
+
+            <div class="card__effective">
+                <div class="effective_icon"><i class="ri-wallet-fill"></i></div>
+                <h5 class="effective__title">Total Efectivo</h5>
+                <h4 class="effective__balance">$5.420.000</h4>
+                <button type="button" class="effective__edit" aria-label="Edit effective balance"><i class="ri-pencil-fill"></i></button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+     <div class="modal micromodal-slide" id="modal-credit-card" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1">
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-categorie-title">
+                <header class="modal__header">
+                    <h3 class="modal__title">Nueva Transacción</h3>
+                </header>
+                <main class="modal__content" id="modal-credit-card-content">
+                    <form action="#" id="form">
+                        <div class="form__group">
+                            <label for="card-number" class="form__label">Número de tarjeta</label>
+                            <input type="text" name="card-number" id="card-number" class="form__input" maxlength="19">
+                        </div>
+                        
+                        <div class="form__grid">
+                            <div class="form__group">
+                                <label for="card-owner" class="form__label">Nombre Propietario</label>
+                                <input type="text" name="card-owner" id="card-owner" class="form__input">
+                            </div>
+
+                            <div class="form__group">
+                                <label for="card-expiration-date" class="form__label">Fecha Expiración</label>
+                                <input type="text" name="card-expiration-date" id="card-expiration-date" class="form__input" placeholder="MM/YY">
+                            </div>
+                        </div>
+
+                        <div class="form__grid">
+                            <div class="form__group">
+                                <label for="card-entity" class="form__label">Entidad Emisora</label>
+                                <select name="card-entity" id="card-entity" class="form__input form__input--select">
+                                    <option value="visa">Visa</option>
+                                    <option value="mastercard">Mastercard</option>
+                                    <option value="nequi">Nequi</option>
+                                    <option value="bancolombia">Bancolombia</option>
+                                </select>
+                            </div>
+
+                            <div class="form__group">
+                                <label for="card-balance" class="form__label">Saldo Base</label>
+                                <input type="number" name="card-balance" id="card-balance" class="form__input">
+                            </div>
+                        </div>
+
+                        <div class="form__buttons">
+                            <button type="button" class="form__btn" data-micromodal-close>Cancelar</button>
+                            <button type="submit" class="form__btn form__btn--submit">Añadir Tarjeta</button>
+                        </div>
+                    </form>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/js/account.js"></script>
+</body>
+</html>
