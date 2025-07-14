@@ -1,3 +1,5 @@
+import Alert from "../classes/Alert.js";
+
 export function getFormData(){
     const data = Object.fromEntries(new FormData(form))
     const isValid = Object.values(data).every(value => value !== "")
@@ -11,6 +13,11 @@ export function formatCardNumber(e) {
     const value = e.target.value.replace(/\D/g, ''); // Remove letters
     const groups = value.match(/.{1,4}/g); //Create an array with blocks of 4 digits
     e.target.value = groups ? groups.join(" ") : value;
+}
+
+export function formatBalance(e) {
+    const formattedBalance = e.target.value.replace(/[^0-9]/g, ''); // Remove everything that is not a digit
+    if (e.target.value !== formattedBalance) e.target.value = formattedBalance;
 }
 
 export function validateExpirationDate(expirationDate){
