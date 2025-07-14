@@ -43,6 +43,18 @@ class API{
             window.location.reload()
         }
     }
+
+    async getResourceByID(resource, id){
+        try {
+            const res = await fetch(`${this.resourcesURL[resource]}/${id}`);
+            if (!res.ok) throw new Error("Petición rechazada por el servidor");
+
+            const selectedResource = await res.json();
+            return selectedResource;
+        } catch (error) {
+            Alert.showAlert("error", "Ha ocurrido un error obteniendo el registro seleccionado")
+        }
+    }
 }
 
 export default new API();

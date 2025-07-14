@@ -1,10 +1,23 @@
 import Alert from "../classes/Alert.js";
+import { updateModalTexts } from "./modal.js";
 
 export function getFormData(){
     const data = Object.fromEntries(new FormData(form))
     const isValid = Object.values(data).every(value => value !== "")
     if (!isValid) Alert.showAlert("error", "Todos los campos del formulario son obligatorios") 
     return { data, isValid };
+}
+
+export function cleanForm(modal) {
+    const form = modal.querySelector("form");
+    const modalResourceName = modal.dataset.resource;
+
+    form.reset();
+
+    if (form.getAttribute("data-id")) {
+        form.removeAttribute("data-id");
+        updateModalTexts(modalResourceName, "add", modal)
+    }
 }
 
 //* Credit card

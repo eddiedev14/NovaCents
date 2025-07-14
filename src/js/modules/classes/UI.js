@@ -1,5 +1,7 @@
+import MicroModal from "micromodal";
 import { addCreditCardContainer, creditCardsContainer } from "../selectors.js";
-import { formatThousands } from "../utils.js";
+import { formatThousands, getCardID } from "../utils.js";
+import { showCardInForm } from "../../account.js";
 import API from "./API.js";
 
 class UI{
@@ -82,6 +84,10 @@ class UI{
             editBtn.type = "button";
             editBtn.classList.add("credit__button");
             editBtn.ariaLabel = "Edit credit card";
+            editBtn.onclick = e => {
+                const cardID = getCardID(e.target);
+                showCardInForm(cardID)
+            }
 
             const editIcon = document.createElement("I");
             editIcon.classList.add("ri-pencil-fill");
