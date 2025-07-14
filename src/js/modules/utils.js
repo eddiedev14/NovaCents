@@ -7,6 +7,10 @@ export function formatCardNumber(e) {
     e.target.value = groups ? groups.join(" ") : value;
 }
 
+export function generateID(){
+    return Date.now() + Math.random().toString(36).substring(2, 8);
+}
+
 //* Form Validations
 
 export function getFormData(){

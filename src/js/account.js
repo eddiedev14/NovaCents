@@ -1,7 +1,7 @@
 import { creditNumberInput, form, sidebar, sidebarMenu } from "./modules/selectors.js";
 import { closeSidebar, openSidebar } from "./modules/components/sidebar.js";
 import { initModals } from "./modules/components/modal.js";
-import { formatCardNumber, getFormData, validateExpirationDate } from "./modules/utils.js";
+import { formatCardNumber, generateID, getFormData, validateExpirationDate } from "./modules/utils.js";
 import API from "./modules/classes/API.js";
 
 //* Event Listeners
@@ -27,10 +27,9 @@ async function submitCreditCardForm(e) {
 
     const isExpirationDateValid = validateExpirationDate(data["card-expiration-date"]);
     if(!isExpirationDateValid) return;
-
-    const id = Date.now() + Math.random().toString(36).substring(2, 8);
+    
     const card = {
-        id,
+        id: generateID(),
         ...data,
     }
 
