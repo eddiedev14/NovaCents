@@ -74,25 +74,6 @@
 
         <section class="cards">
             <div class="credit__cards">
-                <article class="credit__card">
-                    <img src="/public/images/visa.png" alt="Payment method">
-                    <h5 class="credit__subtitle">Saldo</h5>
-                    <h4 class="credit__balance">$11.000.000</h4>
-                    <span class="credit__number">5294 2436 4780 2468</span>
-                    <div class="credit__bottom">
-                        <div class="credit__column">
-                            <h5 class="column__title">NOMBRE</h5>
-                            <strong class="column__value">TODO CÓDIGO</strong>
-                        </div>
-                        <div class="credit__column">
-                            <h5 class="column__title">FECHA EXPIRACIÓN</h5>
-                            <strong class="column__value">12/25</strong>
-                        </div>
-                    </div>
-                    
-                    <button type="button" class="credit__button" aria-label="Edit credit card"><i class="ri-pencil-fill"></i></button>
-                </article>
-
                 <article class="credit__card credit__card--add" data-micromodal-trigger="modal-credit-card" tabindex="0">
                     <i class="ri-add-circle-line"></i>
                     <h5 class="credit__title">Añadir Tarjeta</h5>
@@ -147,7 +128,7 @@
 
                             <div class="form__group">
                                 <label for="card-balance" class="form__label">Saldo Base</label>
-                                <input type="number" name="card-balance" id="card-balance" class="form__input" min="0">
+                                <input type="text" name="card-balance" id="card-balance" class="form__input">
                             </div>
                         </div>
 

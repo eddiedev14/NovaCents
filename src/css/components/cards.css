@@ -7,6 +7,8 @@
 /* Credit Cards */
 
 .credit__cards{
+    max-width: 620px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 36px;
@@ -17,10 +19,25 @@
     min-height: 168px;
     border-radius: 12px;
     padding: 12px 18px;
-    background-image: url("/public/backgrounds/green-background.png");
     background-position: center;
     color: #fff;
     position: relative;
+}
+
+.credit__card.credit__card--visa{
+    background-image: url("/public/backgrounds/visa-background.png");
+}
+
+.credit__card.credit__card--mastercard{
+    background-image: url("/public/backgrounds/mastercard-background.png");
+}
+
+.credit__card.credit__card--nequi{
+    background-image: url("/public/backgrounds/nequi-background.png");
+}
+
+.credit__card.credit__card--bancolombia{
+    background-image: url("/public/backgrounds/bancolombia-background.png");
 }
 
 .credit__card img{

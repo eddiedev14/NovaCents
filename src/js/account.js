@@ -1,12 +1,16 @@
-import { creditNumberInput, form, sidebar, sidebarMenu } from "./modules/selectors.js";
+import { creditBalanceInput, creditNumberInput, form, sidebar, sidebarMenu } from "./modules/selectors.js";
 import { closeSidebar, openSidebar } from "./modules/components/sidebar.js";
 import { initModals } from "./modules/components/modal.js";
-import { formatCardNumber, getFormData, validateExpirationDate } from "./modules/components/form.js";
+import { formatBalance, formatCardNumber, getFormData, validateExpirationDate } from "./modules/components/form.js";
 import { generateID } from "./modules/utils.js";
 import API from "./modules/classes/API.js";
+import UI from "./modules/classes/UI.js";
 
 //* Event Listeners
-document.addEventListener("DOMContentLoaded", initModals)
+document.addEventListener("DOMContentLoaded", async () => {
+    initModals();
+    UI.showCards();
+})
 
 //* Sidebar
 sidebarMenu.addEventListener("click", openSidebar);
@@ -16,6 +20,7 @@ sidebar.addEventListener("focusout", closeSidebar);
 
 //* Credit card form
 creditNumberInput.addEventListener("input", formatCardNumber)
+creditBalanceInput.addEventListener("input", formatBalance)
 form.addEventListener("submit", submitCreditCardForm)
 
 //* Functions
@@ -29,10 +34,13 @@ async function submitCreditCardForm(e) {
     //Custom Validations
     const isExpirationDateValid = validateExpirationDate(data["card-expiration-date"]);
     if(!isExpirationDateValid) return;
-    
+
+    //Convert credit balance to integer
+    data["card-balance"] = parseInt(data["card-balance"]);
+
     const card = {
         id: generateID(),
-        ...data,
+        ...data
     }
 
     //Add resource
@@ -40,5 +48,5 @@ async function submitCreditCardForm(e) {
     if (!isCardAdded) return;
 
     //Get resources and show them
-
+    UI.showCards();
 }
