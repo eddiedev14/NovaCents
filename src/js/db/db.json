@@ -1,0 +1,17 @@
+{
+  "cards": [
+    {
+      "id": "17524620867928t2lvu",
+      "card-number": "1232 3991 2399 4919",
+      "card-owner": "Todo Código",
+      "card-expiration-date": "12/25",
+      "card-entity": "nequi",
+      "card-balance": "50000"
+    }
+  ],
+  "effective": {
+    "saldo": null
+  },
+  "categories": [],
+  "transactions": []
+}
