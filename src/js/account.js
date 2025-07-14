@@ -1,7 +1,8 @@
 import { creditNumberInput, form, sidebar, sidebarMenu } from "./modules/selectors.js";
 import { closeSidebar, openSidebar } from "./modules/components/sidebar.js";
 import { initModals } from "./modules/components/modal.js";
-import { formatCardNumber, generateID, getFormData, validateExpirationDate } from "./modules/utils.js";
+import { formatCardNumber, getFormData, validateExpirationDate } from "./modules/components/form.js";
+import { generateID } from "./modules/utils.js";
 import API from "./modules/classes/API.js";
 
 //* Event Listeners
@@ -14,8 +15,8 @@ sidebar.addEventListener("focusout", closeSidebar);
 //* Form
 
 //* Credit card form
-form.addEventListener("submit", submitCreditCardForm)
 creditNumberInput.addEventListener("input", formatCardNumber)
+form.addEventListener("submit", submitCreditCardForm)
 
 //* Functions
 async function submitCreditCardForm(e) {
@@ -25,6 +26,7 @@ async function submitCreditCardForm(e) {
     const {data, isValid} = getFormData();
     if(!isValid) return;
 
+    //Custom Validations
     const isExpirationDateValid = validateExpirationDate(data["card-expiration-date"]);
     if(!isExpirationDateValid) return;
     
@@ -33,8 +35,10 @@ async function submitCreditCardForm(e) {
         ...data,
     }
 
+    //Add resource
     const isCardAdded = await API.addResource("cards", card, { resourceName: "tarjeta", modalId: "modal-credit-card" })
     if (!isCardAdded) return;
 
-    //Método para obtener los recursos
+    //Get resources and show them
+
 }
