@@ -5,8 +5,24 @@
       "card-number": "1239 1391 2939 1293",
       "card-owner": "Sofia López",
       "card-expiration-date": "12/25",
-      "card-entity": "visa",
+      "card-entity": "nequi",
       "card-balance": 2388412
+    },
+    {
+      "id": "17525111576461cb6n4",
+      "card-number": "1238 3218 3912 0301",
+      "card-owner": "Todo Código",
+      "card-expiration-date": "12/25",
+      "card-entity": "mastercard",
+      "card-balance": 5000000
+    },
+    {
+      "id": "1752511966277yf693i",
+      "card-number": "3913 9192 3919 3919",
+      "card-owner": "Roberto",
+      "card-expiration-date": "12/26",
+      "card-entity": "visa",
+      "card-balance": 800000
     }
   ],
   "effective": {

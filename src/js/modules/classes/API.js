@@ -30,6 +30,19 @@ class API{
             Alert.showAlert("error", "Ha ocurrido un error mientras se añadía el registro")
         }
     }
+
+    async getResources(resource){
+        try {
+            const res = await fetch(this.resourcesURL[resource]);
+            if (!res.ok) throw new Error("Petición rechazada por el servidor");
+
+            const resources = await res.json();
+            return resources;
+        } catch (error) {
+            Alert.showAlert("error", "Ha ocurrido un error obteniendo los registros")
+            window.location.reload()
+        }
+    }
 }
 
 export default new API();

@@ -4,9 +4,13 @@ import { initModals } from "./modules/components/modal.js";
 import { formatBalance, formatCardNumber, getFormData, validateExpirationDate } from "./modules/components/form.js";
 import { generateID } from "./modules/utils.js";
 import API from "./modules/classes/API.js";
+import UI from "./modules/classes/UI.js";
 
 //* Event Listeners
-document.addEventListener("DOMContentLoaded", initModals)
+document.addEventListener("DOMContentLoaded", async () => {
+    initModals();
+    UI.showCards();
+})
 
 //* Sidebar
 sidebarMenu.addEventListener("click", openSidebar);
@@ -44,5 +48,5 @@ async function submitCreditCardForm(e) {
     if (!isCardAdded) return;
 
     //Get resources and show them
-
+    UI.showCards();
 }
