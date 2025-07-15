@@ -90,6 +90,21 @@ class API{
             Alert.showAlert("error", "Ha ocurrido un error mientras se actualizaba el registro")
         }
     }
+
+    async deleteResource(resource, resourceName, id){
+        try {
+            const res = await fetch(`${this.resourcesURL[resource]}/${id}`, {
+                method: "DELETE",
+            });
+            
+            if (!res.ok) throw new Error("Petición rechazada por el servidor");
+
+            Alert.showAlert("success", `La ${resourceName} ha sido eliminada correctamente`);
+            return true;
+        } catch (error) {
+            Alert.showAlert("error", "Ha ocurrido un error mientras se eliminaba el registro")
+        }
+    }
 }
 
 export default new API();

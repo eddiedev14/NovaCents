@@ -7,6 +7,5 @@ export function formatThousands(balance) {
 }
 
 export function getCardID(element){
-  let button = element.nodeName === "I" ? element.parentElement : element;
-  return button.parentElement.dataset.id;
+  return element.closest(".credit__card").dataset.id;
 }

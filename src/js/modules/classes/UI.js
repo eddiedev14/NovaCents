@@ -1,6 +1,7 @@
 import { addCreditCardContainer, creditCardsContainer } from "../selectors.js";
 import { formatThousands, getCardID } from "../utils.js";
 import { showCardInForm } from "../../account.js";
+import Alert from "./Alert.js";
 import API from "./API.js";
 
 class UI{
@@ -103,7 +104,8 @@ class UI{
             deleteBtn.classList.add("card__button");
             deleteBtn.ariaLabel = "Delete card";
             deleteBtn.onclick = e => {
-                console.log("Eliminando...")
+                const cardID = getCardID(e.target);
+                Alert.showConfirmationAlert("cards", "tarjeta", cardID, () => this.showCards())
             }
 
             const deleteIcon = document.createElement("I");
