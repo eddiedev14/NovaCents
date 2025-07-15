@@ -10,7 +10,7 @@ export function getFormData(form){
     return { data, isValid };
 }
 
-export async function formSubmitHandler(e, { onAdd, onEdit, onSuccess, customValidations = [], integerFields = [], uniqueValidation = null, modalID }){
+export async function formSubmitHandler(e, { onAdd, onEdit, onSuccess, customValidations = [], integerFields = [], uniqueValidation, modalID }){
     e.preventDefault();
 
     const form = e.target;
@@ -57,9 +57,10 @@ export async function formSubmitHandler(e, { onAdd, onEdit, onSuccess, customVal
 }
 
 export function cleanForm(modal) {
-    const form = modal.querySelector("form");
     const modalResourceName = modal.dataset.resource;
-
+    if (modalResourceName === "Efectivo") return;
+    
+    const form = modal.querySelector("form");
     form.reset();
 
     if (form.getAttribute("data-id")) {

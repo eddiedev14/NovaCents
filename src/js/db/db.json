@@ -9,9 +9,12 @@
       "card-balance": 50000
     }
   ],
-  "effective": {
-    "saldo": null
-  },
+  "effective": [
+    {
+      "id": "1",
+      "effective-balance": 600000
+    }
+  ],
   "categories": [],
   "transactions": []
 }

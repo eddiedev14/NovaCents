@@ -83,7 +83,8 @@ class API{
             
             if (!res.ok) throw new Error("Petición rechazada por el servidor");
 
-            Alert.showAlert("success", `La ${resourceName} ha sido actualizada correctamente`);
+            const message = resourceName !== "efectivo" ? `La ${resourceName} ha sido actualizada correctamente` : "El saldo en efectivo ha sido actualizado correctamente"
+            Alert.showAlert("success", message);
             MicroModal.close(modalId)
             return true;
         } catch (error) {
