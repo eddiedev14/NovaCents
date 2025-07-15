@@ -43,6 +43,53 @@ class API{
             window.location.reload()
         }
     }
+
+    async getResourceByID(resource, id){
+        try {
+            const res = await fetch(`${this.resourcesURL[resource]}/${id}`);
+            if (!res.ok) throw new Error("Petición rechazada por el servidor");
+
+            const selectedResource = await res.json();
+            return selectedResource;
+        } catch (error) {
+            Alert.showAlert("error", "Ha ocurrido un error obteniendo el registro seleccionado")
+        }
+    }
+
+    async getResourceByFields(resource, query = {}) {
+        try {
+            const queryString = new URLSearchParams(query).toString();
+            const res = await fetch(`${this.resourcesURL[resource]}?${queryString}`);
+            if (!res.ok) throw new Error("Petición rechazada por el servidor");
+
+            const results = await res.json();
+            return results;
+        } catch (error) {
+            Alert.showAlert("error", "Ha ocurrido un error obteniendo los datos solicitados");
+        }
+    }
+
+    async editResource(resource, object, { resourceName, modalId }){
+        try {
+            const { id } = object;
+
+            const res = await fetch(`${this.resourcesURL[resource]}/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(object)
+            });
+            
+            if (!res.ok) throw new Error("Petición rechazada por el servidor");
+
+            Alert.showAlert("success", `La ${resourceName} ha sido actualizada correctamente`);
+            MicroModal.close(modalId)
+            return true;
+        } catch (error) {
+            Alert.showAlert("error", "Ha ocurrido un error mientras se actualizaba el registro")
+        }
+    }
 }
 
 export default new API();

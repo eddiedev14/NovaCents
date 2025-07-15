@@ -2,7 +2,7 @@
   "cards": [
     {
       "id": "1752507169148g0u4rd",
-      "card-number": "1239 1391 2939 1293",
+      "card-number": "1238 3218 3912 0301",
       "card-owner": "Sofia López",
       "card-expiration-date": "12/25",
       "card-entity": "nequi",
@@ -10,19 +10,19 @@
     },
     {
       "id": "17525111576461cb6n4",
-      "card-number": "1238 3218 3912 0301",
+      "card-number": "9238 2131 2345 6758",
       "card-owner": "Todo Código",
       "card-expiration-date": "12/25",
-      "card-entity": "mastercard",
+      "card-entity": "nequi",
       "card-balance": 5000000
     },
     {
-      "id": "1752511966277yf693i",
-      "card-number": "3913 9192 3919 3919",
-      "card-owner": "Roberto",
-      "card-expiration-date": "12/26",
-      "card-entity": "visa",
-      "card-balance": 800000
+      "id": "175254767270242dl5b",
+      "card-number": "9238 2131 2345 6758",
+      "card-owner": "Natalia",
+      "card-expiration-date": "10/25",
+      "card-entity": "bancolombia",
+      "card-balance": 50000
     }
   ],
   "effective": {
