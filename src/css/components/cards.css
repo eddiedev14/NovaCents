@@ -79,6 +79,17 @@
     font-size: 16px;
 }
 
+.card__buttons{
+    display: flex;
+    gap: 8px;
+}
+
+.card__buttons, .effective__edit{
+    position: absolute;
+    right: 10px;
+    bottom: -16px;
+}
+
 .card__button, .effective__edit{
     width: 36px;
     height: 36px;
@@ -87,11 +98,15 @@
     background-color: #fff;
     border: 2px solid #E1E6EF;
     cursor: pointer;
-    transition: .3s ease-in-out scale;
-    position: absolute;
-    right: 10px;
-    bottom: -16px;
+    transition: .3s ease-in-out scale; 
+}
+
+.card__button:first-child, .effective__edit{
     color: var(--blue);
+}
+
+.card__button:last-child{
+    color: var(--red);
 }
 
 .card__button:hover, .effective__edit:hover{

@@ -78,6 +78,10 @@ class UI{
             cardBottom.appendChild(firstcardColumn)
             cardBottom.appendChild(secondcardColumn)
 
+            //* Buttons
+            const cardButtons = document.createElement("DIV");
+            cardButtons.classList.add("card__buttons")
+
             //* Edit button
             const editBtn = document.createElement("BUTTON");
             editBtn.type = "button";
@@ -93,13 +97,30 @@ class UI{
 
             editBtn.appendChild(editIcon)
 
+            //* Delete button
+            const deleteBtn = document.createElement("BUTTON");
+            deleteBtn.type = "button";
+            deleteBtn.classList.add("card__button");
+            deleteBtn.ariaLabel = "Delete card";
+            deleteBtn.onclick = e => {
+                console.log("Eliminando...")
+            }
+
+            const deleteIcon = document.createElement("I");
+            deleteIcon.classList.add("ri-delete-bin-7-fill");
+
+            deleteBtn.appendChild(deleteIcon)
+
+            cardButtons.appendChild(editBtn)
+            cardButtons.appendChild(deleteBtn)
+
             //* Add elements to article
             article.appendChild(cardImage)
             article.appendChild(cardSubtitle)
             article.appendChild(cardBalanceText)
             article.appendChild(cardNumberText)
             article.appendChild(cardBottom)
-            article.appendChild(editBtn)
+            article.appendChild(cardButtons)
 
             //* Add cards card to DOM
             creditCardsContainer.insertBefore(article, addCreditCardContainer)
