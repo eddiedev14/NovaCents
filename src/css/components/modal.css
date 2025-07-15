@@ -77,6 +77,10 @@
     flex-direction: column;
 }
 
+.form__group:has(input[readonly]){
+    opacity: .5;
+}
+
 .form__grid{
     display: flex;
     flex-direction: column;

@@ -1,4 +1,3 @@
-import MicroModal from "micromodal";
 import { addCreditCardContainer, creditCardsContainer } from "../selectors.js";
 import { formatThousands, getCardID } from "../utils.js";
 import { showCardInForm } from "../../account.js";

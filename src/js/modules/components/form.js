@@ -1,11 +1,59 @@
 import Alert from "../classes/Alert.js";
+import API from "../classes/API.js";
+import { generateID } from "../utils.js";
 import { updateModalTexts } from "./modal.js";
 
-export function getFormData(){
+export function getFormData(form){
     const data = Object.fromEntries(new FormData(form))
     const isValid = Object.values(data).every(value => value !== "")
     if (!isValid) Alert.showAlert("error", "Todos los campos del formulario son obligatorios") 
     return { data, isValid };
+}
+
+export async function formSubmitHandler(e, { onAdd, onEdit, onSuccess, customValidations = [], integerFields = [], uniqueValidation = null, modalID }){
+    e.preventDefault();
+
+    const form = e.target;
+
+    //1. Default validation (All fields are required)
+    const {data, isValid} = getFormData(form);
+    if(!isValid) return;
+
+    //2. Custom validations
+    for (const validation of customValidations) {
+        const { field, validate } = validation;
+        if (!validate(data[field])) return
+    }
+
+    //3. Parse integer fields
+    integerFields.forEach(field => data[field] = parseInt(data[field]))
+
+    //4. Define whether you are adding or editing
+    const isEdit = !!form.dataset.id;
+    const resourceID = form.dataset.id || generateID();  
+
+    //5. Create resource
+    const resource = {
+        id: resourceID,
+        ...data
+    }
+
+    //6. Validate if it is unique
+    if (uniqueValidation) {
+        const isValid = await uniqueValidation(resource, isEdit);
+        if (!isValid) return;
+    }
+
+    //7. Run form action
+    const success = isEdit ? await onEdit(resource) : await onAdd(resource);
+    if (!success) return;
+
+    //8. Get resources and show them
+    onSuccess();
+
+    //9. Reset form
+    const modal = document.querySelector(`#${modalID}`);
+    cleanForm(modal)
 }
 
 export function cleanForm(modal) {
@@ -16,6 +64,7 @@ export function cleanForm(modal) {
 
     if (form.getAttribute("data-id")) {
         form.removeAttribute("data-id");
+        form.querySelectorAll("input[readonly]").forEach(input => input.removeAttribute("readonly"))
         updateModalTexts(modalResourceName, "add", modal)
     }
 }
@@ -33,7 +82,7 @@ export function formatBalance(e) {
     if (e.target.value !== formattedBalance) e.target.value = formattedBalance;
 }
 
-export function validateExpirationDate(expirationDate){
+export function isExpirationDateValid(expirationDate){
     //1. Validate expiration date format
     if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expirationDate)) {
         Alert.showAlert("error", "La fecha de expiración no cumple el formato esperado")
@@ -55,4 +104,17 @@ export function validateExpirationDate(expirationDate){
     }
 
     return true;
+}
+
+export async function isCardUnique(data, isEdit){
+    const results = await API.getResourceByFields("cards", {
+        "card-number": data["card-number"],
+        "card-entity": data["card-entity"]
+    });
+    if (!results) return false;
+
+    const duplicate = isEdit ? results.some(card => card.id !== data.id) : results.length > 0;
+    if (duplicate) Alert.showAlert("error", "La tarjeta ingresada ya existe");
+
+    return !duplicate;
 }
