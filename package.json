@@ -4,14 +4,20 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"npm run vite\" \"npm run json-server\"",
+    "vite": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "json-server": "json-server --watch src/js/db/db.json"
   },
   "devDependencies": {
+    "concurrently": "^9.2.0",
     "vite": "^7.0.4"
   },
   "dependencies": {
-    "micromodal": "^0.6.1"
+    "json-server": "^1.0.0-beta.3",
+    "micromodal": "^0.6.1",
+    "notyf": "^3.10.0",
+    "sweetalert2": "^11.22.2"
   }
 }

@@ -7,6 +7,8 @@
 /* Credit Cards */
 
 .credit__cards{
+    max-width: 620px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 36px;
@@ -17,10 +19,25 @@
     min-height: 168px;
     border-radius: 12px;
     padding: 12px 18px;
-    background-image: url("/public/backgrounds/green-background.png");
     background-position: center;
     color: #fff;
     position: relative;
+}
+
+.credit__card.credit__card--visa{
+    background-image: url("/public/backgrounds/visa-background.png");
+}
+
+.credit__card.credit__card--mastercard{
+    background-image: url("/public/backgrounds/mastercard-background.png");
+}
+
+.credit__card.credit__card--nequi{
+    background-image: url("/public/backgrounds/nequi-background.png");
+}
+
+.credit__card.credit__card--bancolombia{
+    background-image: url("/public/backgrounds/bancolombia-background.png");
 }
 
 .credit__card img{
@@ -29,25 +46,25 @@
     top: 14px;
 }
 
-.credit__subtitle{
+.card__subtitle{
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 15px;
 }
 
-.credit__balance{
+.card__balance{
     font-size: 28px;
     margin-bottom: 11px;
 }
 
-.credit__number{
+.card__number{
     display: inline-block;
     font-weight: 500;
     font-size: 20px;
     margin-bottom: 11px;
 }
 
-.credit__bottom{
+.card__bottom{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -62,7 +79,18 @@
     font-size: 16px;
 }
 
-.credit__button, .effective__edit{
+.card__buttons{
+    display: flex;
+    gap: 8px;
+}
+
+.card__buttons, .effective__edit{
+    position: absolute;
+    right: 10px;
+    bottom: -16px;
+}
+
+.card__button, .effective__edit{
     width: 36px;
     height: 36px;
     font-size: 20px;
@@ -70,14 +98,18 @@
     background-color: #fff;
     border: 2px solid #E1E6EF;
     cursor: pointer;
-    transition: .3s ease-in-out scale;
-    position: absolute;
-    right: 10px;
-    bottom: -16px;
+    transition: .3s ease-in-out scale; 
+}
+
+.card__button:first-child, .effective__edit{
     color: var(--blue);
 }
 
-.credit__button:hover, .effective__edit:hover{
+.card__button:last-child{
+    color: var(--red);
+}
+
+.card__button:hover, .effective__edit:hover{
     scale: 1.1;
 }
 

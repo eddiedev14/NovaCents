@@ -1,0 +1,17 @@
+{
+  "cards": [
+    {
+      "id": "1752597046044tgrpw4",
+      "card-number": "1299 1939 2193 9139",
+      "card-owner": "Diana",
+      "card-expiration-date": "09/28",
+      "card-entity": "mastercard",
+      "card-balance": 50000
+    }
+  ],
+  "effective": {
+    "saldo": null
+  },
+  "categories": [],
+  "transactions": []
+}
