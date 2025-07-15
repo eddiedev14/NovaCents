@@ -1,4 +1,4 @@
-import { closeButtons, cardBalanceInput, cardEntityInput, cardExpirationDateInput, cardNumberInput, cardOwnerInput, form, sidebar, sidebarMenu } from "./modules/selectors.js";
+import { closeButtons, cardBalanceInput, cardEntityInput, cardExpirationDateInput, cardNumberInput, cardOwnerInput, cardForm, sidebar, sidebarMenu } from "./modules/selectors.js";
 import { closeSidebar, openSidebar } from "./modules/components/sidebar.js";
 import { initModals, updateModalTexts } from "./modules/components/modal.js";
 import { cleanForm, formatBalance, formatCardNumber, formSubmitHandler, isCardUnique, isExpirationDateValid } from "./modules/components/form.js";
@@ -10,6 +10,7 @@ import MicroModal from "micromodal";
 document.addEventListener("DOMContentLoaded", async () => {
     initModals();
     UI.showCards();
+    UI.showEffective();
 })
 
 //* Sidebar
@@ -23,7 +24,7 @@ closeButtons.forEach(btn => btn.addEventListener("click", e => cleanForm(e.targe
 cardNumberInput.addEventListener("input", formatCardNumber)
 cardBalanceInput.addEventListener("input", formatBalance)
 
-form.addEventListener("submit", (e) => {
+cardForm.addEventListener("submit", (e) => {
     formSubmitHandler(e, {
         onAdd: async (resource) => await API.addResource("cards", resource, { resourceName: "tarjeta", modalId: "modal-card" }),
         onEdit: async (resource) => await API.editResource("cards", resource, { resourceName: "tarjeta", modalId: "modal-card" }),
@@ -49,7 +50,7 @@ export async function showCardInForm(id) {
 
     const { ["card-number"]: cardNumber, ["card-owner"]: cardOwner, ["card-expiration-date"]: cardExpirationDate, ["card-entity"]: cardEntity, ["card-balance"]: cardBalance } = selectedCard;
 
-    form.dataset.id = id;
+    cardForm.dataset.id = id;
     cardNumberInput.value = cardNumber;
     cardOwnerInput.value = cardOwner;
     cardExpirationDateInput.value = cardExpirationDate;

@@ -1,5 +1,8 @@
-import { addCreditCardContainer, creditCardsContainer } from "../selectors.js";
+import { effectiveID } from "../variables.js";
+import MicroModal from "micromodal";
+import { addCreditCardContainer, creditCardsContainer, effectiveBalance, effectiveCard, effectiveModalTemplate, modalsContainer } from "../selectors.js";
 import { formatThousands, getCardID } from "../utils.js";
+import { formatBalance, formSubmitHandler } from "../components/form.js";
 import { showCardInForm } from "../../account.js";
 import Alert from "./Alert.js";
 import API from "./API.js";
@@ -127,6 +130,67 @@ class UI{
             //* Add cards card to DOM
             creditCardsContainer.insertBefore(article, addCreditCardContainer)
         });
+    }
+
+    async showEffective(){
+        const effective = await API.getResourceByID("effective", effectiveID);
+        const balance = effective["effective-balance"];
+        const isEditable = balance == null;
+        
+        if (!isEditable) {  
+            effectiveBalance.textContent = `$${formatThousands(balance)}`;
+
+            //Remove modal and edit btn
+            const effectiveModal = document.querySelector("#modal-effective");
+            const editBtn = document.querySelector(".effective__edit");
+
+            if (effectiveModal && editBtn){
+                effectiveModal.remove();
+                editBtn.remove();
+            }
+
+            return;
+        }
+
+        effectiveBalance.textContent = "SIN EDITAR";
+
+        //Edit button
+        const editBtn = document.createElement("BUTTON");
+        editBtn.type = "button";
+        editBtn.classList.add("effective__edit");
+        editBtn.ariaLabel = "Edit effective";
+        editBtn.onclick = e => {
+            MicroModal.show("modal-effective");
+        }
+
+        const editIcon = document.createElement("I");
+        editIcon.classList.add("ri-pencil-fill");
+
+        editBtn.appendChild(editIcon)
+        effectiveCard.appendChild(editBtn)
+
+        //Modal Template
+        const effectiveModal = effectiveModalTemplate.content.cloneNode(true);
+        modalsContainer.appendChild(effectiveModal)
+
+        //Add close event to reset the form
+        const effectiveForm = document.querySelector("#modal-effective-content form");
+        const closeBtn = effectiveForm.querySelector(".form__btn--close");
+        closeBtn.addEventListener("click", () => effectiveForm.reset())
+
+        //Add balance input event
+        const balanceInput = effectiveForm.querySelector("#effective-balance");
+        balanceInput.addEventListener("input", formatBalance)
+
+        //Add submit event
+        effectiveForm.addEventListener("submit", (e) => {
+            formSubmitHandler(e, {
+                onEdit: async (resource) => await API.editResource("effective", resource, { resourceName: "efectivo", modalId: "modal-effective" }),
+                onSuccess: () => this.showEffective(),
+                integerFields: ["effective-balance"],
+                modalID: "modal-effective"
+            })
+        })
     }
 
     cleanContainer(container){
