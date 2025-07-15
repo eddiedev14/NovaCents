@@ -83,63 +83,92 @@
             <div class="card__effective">
                 <div class="effective_icon"><i class="ri-wallet-fill"></i></div>
                 <h5 class="effective__title">Total Efectivo</h5>
-                <h4 class="effective__balance">$5.420.000</h4>
-                <button type="button" class="effective__edit" aria-label="Edit effective balance"><i class="ri-pencil-fill"></i></button>
+                <h4 class="effective__balance"></h4>
+                <!-- <button type="button" class="effective__edit" aria-label="Edit effective balance"><i class="ri-pencil-fill"></i></button> -->
             </div>
         </section>
     </main>
 
     <!-- Modals -->
-     <div class="modal micromodal-slide" id="modal-card" aria-hidden="true" data-resource="Tarjeta">
-        <div class="modal__overlay" tabindex="-1">
-            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-categorie-title">
-                <header class="modal__header">
-                    <h3 class="modal__title">Añadir Tarjeta</h3>
-                </header>
-                <main class="modal__content" id="modal-card-content">
-                    <form action="#" id="form">
-                        <div class="form__group">
-                            <label for="card-number" class="form__label">Número de tarjeta</label>
-                            <input type="text" name="card-number" id="card-number" class="form__input" maxlength="19">
-                        </div>
-                        
-                        <div class="form__grid">
+    <div class="modals">
+        <div class="modal micromodal-slide" id="modal-card" aria-hidden="true" data-resource="Tarjeta">
+            <div class="modal__overlay" tabindex="-1">
+                <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-card-title">
+                    <header class="modal__header">
+                        <h3 class="modal__title" id="modal-card-title">Añadir Tarjeta</h3>
+                    </header>
+                    <main class="modal__content" id="modal-card-content">
+                        <form action="#" id="card-form">
                             <div class="form__group">
-                                <label for="card-owner" class="form__label">Nombre Propietario</label>
-                                <input type="text" name="card-owner" id="card-owner" class="form__input">
+                                <label for="card-number" class="form__label">Número de tarjeta</label>
+                                <input type="text" name="card-number" id="card-number" class="form__input" maxlength="19">
+                            </div>
+                            
+                            <div class="form__grid">
+                                <div class="form__group">
+                                    <label for="card-owner" class="form__label">Nombre Propietario</label>
+                                    <input type="text" name="card-owner" id="card-owner" class="form__input">
+                                </div>
+
+                                <div class="form__group">
+                                    <label for="card-expiration-date" class="form__label">Fecha Expiración</label>
+                                    <input type="text" name="card-expiration-date" id="card-expiration-date" class="form__input" placeholder="MM/YY" maxlength="5">
+                                </div>
                             </div>
 
-                            <div class="form__group">
-                                <label for="card-expiration-date" class="form__label">Fecha Expiración</label>
-                                <input type="text" name="card-expiration-date" id="card-expiration-date" class="form__input" placeholder="MM/YY" maxlength="5">
-                            </div>
-                        </div>
+                            <div class="form__grid">
+                                <div class="form__group">
+                                    <label for="card-entity" class="form__label">Entidad Emisora</label>
+                                    <select name="card-entity" id="card-entity" class="form__input form__input--select">
+                                        <option value="visa">Visa</option>
+                                        <option value="mastercard">Mastercard</option>
+                                        <option value="nequi">Nequi</option>
+                                        <option value="bancolombia">Bancolombia</option>
+                                    </select>
+                                </div>
 
-                        <div class="form__grid">
-                            <div class="form__group">
-                                <label for="card-entity" class="form__label">Entidad Emisora</label>
-                                <select name="card-entity" id="card-entity" class="form__input form__input--select">
-                                    <option value="visa">Visa</option>
-                                    <option value="mastercard">Mastercard</option>
-                                    <option value="nequi">Nequi</option>
-                                    <option value="bancolombia">Bancolombia</option>
-                                </select>
+                                <div class="form__group">
+                                    <label for="card-balance" class="form__label">Saldo Base</label>
+                                    <input type="text" name="card-balance" id="card-balance" class="form__input">
+                                </div>
                             </div>
 
-                            <div class="form__group">
-                                <label for="card-balance" class="form__label">Saldo Base</label>
-                                <input type="text" name="card-balance" id="card-balance" class="form__input">
+                            <div class="form__buttons">
+                                <button type="button" class="form__btn form__btn--close" data-micromodal-close>Cancelar</button>
+                                <button type="submit" class="form__btn form__btn--submit">Añadir Tarjeta</button>
                             </div>
-                        </div>
-
-                        <div class="form__buttons">
-                            <button type="button" class="form__btn form__btn--close" data-micromodal-close>Cancelar</button>
-                            <button type="submit" class="form__btn form__btn--submit">Añadir Tarjeta</button>
-                        </div>
-                    </form>
-                </main>
+                        </form>
+                    </main>
+                </div>
             </div>
         </div>
+
+        <template id="modal-effective-template">
+            <div class="modal micromodal-slide" id="modal-effective" aria-hidden="true" data-resource="Efectivo">
+                <div class="modal__overlay" tabindex="-1">
+                    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-effective-title">
+                        <header class="modal__header">
+                            <div class="header__icon"><i class="ri-currency-fill"></i></div>
+                            <h3 class="modal__title" id="modal-effective-title">Editar Saldo en Efectivo</h3>
+                            <p class="modal__paragraph">Para procesar transacciones con el medio de pago efectivo, primero debes configurar un saldo base inicial.</p>
+                        </header>
+                        <main class="modal__content" id="modal-effective-content">
+                            <form action="#" data-id="1">
+                                <div class="form__group">
+                                    <label for="categorie-name" class="form__label">Saldo Base</label>
+                                    <input type="text" name="effective-balance" id="effective-balance" class="form__input">
+                                </div>
+
+                                <div class="form__buttons">
+                                    <button type="button" class="form__btn form__btn--close" data-micromodal-close>Cancelar</button>
+                                    <button type="submit" class="form__btn form__btn--submit">Actualizar Saldo</button>
+                                </div>
+                            </form>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </template>
     </div>
 
     <script type="module" src="/src/js/account.js"></script>

@@ -11,8 +11,8 @@
   ],
   "effective": [
     {
-      "id": 1,
-      "balance": null
+      "id": "1",
+      "effective-balance": 600000
     }
   ],
   "categories": [],
