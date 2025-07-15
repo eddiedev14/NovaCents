@@ -69,7 +69,7 @@ export function cleanForm(modal) {
     }
 }
 
-//* Credit card
+//* Card
 
 export function formatCardNumber(e) {
     const value = e.target.value.replace(/\D/g, ''); // Remove letters

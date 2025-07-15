@@ -46,25 +46,25 @@
     top: 14px;
 }
 
-.credit__subtitle{
+.card__subtitle{
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 15px;
 }
 
-.credit__balance{
+.card__balance{
     font-size: 28px;
     margin-bottom: 11px;
 }
 
-.credit__number{
+.card__number{
     display: inline-block;
     font-weight: 500;
     font-size: 20px;
     margin-bottom: 11px;
 }
 
-.credit__bottom{
+.card__bottom{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -79,7 +79,7 @@
     font-size: 16px;
 }
 
-.credit__button, .effective__edit{
+.card__button, .effective__edit{
     width: 36px;
     height: 36px;
     font-size: 20px;
@@ -94,7 +94,7 @@
     color: var(--blue);
 }
 
-.credit__button:hover, .effective__edit:hover{
+.card__button:hover, .effective__edit:hover{
     scale: 1.1;
 }
 

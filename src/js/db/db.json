@@ -23,6 +23,14 @@
       "card-expiration-date": "10/25",
       "card-entity": "bancolombia",
       "card-balance": 50000
+    },
+    {
+      "id": "1752592806212p0kfyp",
+      "card-number": "9238 2131 2345 6758",
+      "card-owner": "Await",
+      "card-expiration-date": "09/28",
+      "card-entity": "visa",
+      "card-balance": 50000
     }
   ],
   "effective": {

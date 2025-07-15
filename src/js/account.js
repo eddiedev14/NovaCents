@@ -1,4 +1,4 @@
-import { closeButtons, creditBalanceInput, creditEntityInput, creditExpirationDateInput, creditNumberInput, creditOwnerInput, form, sidebar, sidebarMenu } from "./modules/selectors.js";
+import { closeButtons, cardBalanceInput, cardEntityInput, cardExpirationDateInput, cardNumberInput, cardOwnerInput, form, sidebar, sidebarMenu } from "./modules/selectors.js";
 import { closeSidebar, openSidebar } from "./modules/components/sidebar.js";
 import { initModals, updateModalTexts } from "./modules/components/modal.js";
 import { cleanForm, formatBalance, formatCardNumber, formSubmitHandler, isCardUnique, isExpirationDateValid } from "./modules/components/form.js";
@@ -19,14 +19,14 @@ sidebar.addEventListener("focusout", closeSidebar);
 //* Form
 closeButtons.forEach(btn => btn.addEventListener("click", e => cleanForm(e.target.closest(".modal"))))
 
-//* Credit card form
-creditNumberInput.addEventListener("input", formatCardNumber)
-creditBalanceInput.addEventListener("input", formatBalance)
+//* Card form
+cardNumberInput.addEventListener("input", formatCardNumber)
+cardBalanceInput.addEventListener("input", formatBalance)
 
 form.addEventListener("submit", (e) => {
     formSubmitHandler(e, {
-        onAdd: async (resource) => await API.addResource("cards", resource, { resourceName: "tarjeta", modalId: "modal-credit-card" }),
-        onEdit: async (resource) => await API.editResource("cards", resource, { resourceName: "tarjeta", modalId: "modal-credit-card" }),
+        onAdd: async (resource) => await API.addResource("cards", resource, { resourceName: "tarjeta", modalId: "modal-card" }),
+        onEdit: async (resource) => await API.editResource("cards", resource, { resourceName: "tarjeta", modalId: "modal-card" }),
         onSuccess: () => UI.showCards(),
         customValidations: [
             {
@@ -36,7 +36,7 @@ form.addEventListener("submit", (e) => {
         ],
         integerFields: ["card-balance"],
         uniqueValidation: (resource, isEdit) => isCardUnique(resource, isEdit),
-        modalID: "modal-credit-card"
+        modalID: "modal-card"
     })
 })
 
@@ -50,14 +50,14 @@ export async function showCardInForm(id) {
     const { ["card-number"]: cardNumber, ["card-owner"]: cardOwner, ["card-expiration-date"]: cardExpirationDate, ["card-entity"]: cardEntity, ["card-balance"]: cardBalance } = selectedCard;
 
     form.dataset.id = id;
-    creditNumberInput.value = cardNumber;
-    creditOwnerInput.value = cardOwner;
-    creditExpirationDateInput.value = cardExpirationDate;
-    creditEntityInput.value = cardEntity;
-    creditBalanceInput.value = cardBalance;
-    creditBalanceInput.setAttribute("readonly", "true")
+    cardNumberInput.value = cardNumber;
+    cardOwnerInput.value = cardOwner;
+    cardExpirationDateInput.value = cardExpirationDate;
+    cardEntityInput.value = cardEntity;
+    cardBalanceInput.value = cardBalance;
+    cardBalanceInput.setAttribute("readonly", "true")
 
-    const modal = document.querySelector("#modal-credit-card");
+    const modal = document.querySelector("#modal-card");
     updateModalTexts("Tarjeta", "edit", modal)
-    MicroModal.show("modal-credit-card")
+    MicroModal.show("modal-card")
 }
