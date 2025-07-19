@@ -7,14 +7,35 @@
       "card-expiration-date": "09/28",
       "card-entity": "mastercard",
       "card-balance": 50000
+    },
+    {
+      "id": "1752959123978bpnku8",
+      "card-number": "1299 1939 2193 9139",
+      "card-owner": "Pedro",
+      "card-expiration-date": "12/25",
+      "card-entity": "visa",
+      "card-balance": 50000
     }
   ],
   "effective": [
     {
       "id": "1",
-      "effective-balance": 600000
+      "effective-balance": 50000
     }
   ],
-  "categories": [],
+  "categories": [
+    {
+      "id": "17529585190865lc2p9",
+      "categorie-name": "Vivienda"
+    },
+    {
+      "id": "1752959260826rxob1x",
+      "categorie-name": "Alimentación"
+    },
+    {
+      "id": "1752959592970fl904m",
+      "categorie-name": "Mascotas"
+    }
+  ],
   "transactions": []
 }
