@@ -4,6 +4,14 @@ export function initModals() {
     MicroModal.init()
 }
 
+export function openModal(modalID){
+    MicroModal.show(modalID)
+} 
+
+export function closeModal(modalID){
+    MicroModal.close(modalID)
+} 
+
 export function updateModalTexts(resourceName, action, modal){
     const modalTitle = modal.querySelector(".modal__title");
     const modalSubmitBtn = modal.querySelector(".form__btn--submit")

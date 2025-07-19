@@ -1,5 +1,5 @@
-import MicroModal from "micromodal";
 import Alert from "./Alert.js";
+import { closeModal } from "../components/modal.js";
 
 class API{
     constructor(){
@@ -24,7 +24,7 @@ class API{
             if (!res.ok) throw new Error("Petición rechazada por el servidor");
 
             Alert.showAlert("success", `La ${resourceName} ha sido añadida correctamente`);
-            MicroModal.close(modalId)
+            closeModal(modalId)
             return true;
         } catch (error) {
             Alert.showAlert("error", "Ha ocurrido un error mientras se añadía el registro")
@@ -85,7 +85,7 @@ class API{
 
             const message = resourceName !== "efectivo" ? `La ${resourceName} ha sido actualizada correctamente` : "El saldo en efectivo ha sido actualizado correctamente"
             Alert.showAlert("success", message);
-            MicroModal.close(modalId)
+            closeModal(modalId)
             return true;
         } catch (error) {
             Alert.showAlert("error", "Ha ocurrido un error mientras se actualizaba el registro")

@@ -2,7 +2,8 @@
 export const sidebar = document.querySelector(".nav");
 export const sidebarMenu = document.querySelector("#sidebar__menu")
 
-//* Modals Container
+//* Modal
+export const openModalsBtns = document.querySelectorAll(".header__btn--modal")
 export const modalsContainer = document.querySelector(".modals")
 
 //* Credit card
@@ -16,6 +17,7 @@ export const effectiveModalTemplate = document.querySelector("#modal-effective-t
 
 //* Forms
 export const cardForm = document.querySelector("#card-form");
+export const categorieForm = document.querySelector("#categorie-form");
 
 export const closeButtons = document.querySelectorAll(".form__btn--close");
 

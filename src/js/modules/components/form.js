@@ -49,7 +49,7 @@ export async function formSubmitHandler(e, { onAdd, onEdit, onSuccess, customVal
     if (!success) return;
 
     //8. Get resources and show them
-    onSuccess();
+    if(onSuccess) onSuccess();
 
     //9. Reset form
     const modal = document.querySelector(`#${modalID}`);
@@ -58,7 +58,7 @@ export async function formSubmitHandler(e, { onAdd, onEdit, onSuccess, customVal
 
 export function cleanForm(modal) {
     const modalResourceName = modal.dataset.resource;
-    if (modalResourceName === "Efectivo") return;
+    if (modalResourceName === "Efectivo") return; // Return if it's effective
     
     const form = modal.querySelector("form");
     form.reset();
@@ -107,15 +107,17 @@ export function isExpirationDateValid(expirationDate){
     return true;
 }
 
-export async function isCardUnique(data, isEdit){
-    const results = await API.getResourceByFields("cards", {
-        "card-number": data["card-number"],
-        "card-entity": data["card-entity"]
-    });
+//* Unique Validation
+
+export async function isResourceUnique(data, uniqueFields, resource, resourceName, isEdit){
+    const fieldsToCheck = {};
+    uniqueFields.forEach(field => fieldsToCheck[field] = data[field]) //Add unique fields to object
+    
+    const results = await API.getResourceByFields(resource, fieldsToCheck);
     if (!results) return false;
 
-    const duplicate = isEdit ? results.some(card => card.id !== data.id) : results.length > 0;
-    if (duplicate) Alert.showAlert("error", "La tarjeta ingresada ya existe");
+    const duplicate = isEdit ? results.some(resource => resource.id !== data.id) : results.length > 0;
+    if (duplicate) Alert.showAlert("error", `La ${resourceName} ingresada ya existe`);
 
     return !duplicate;
 }

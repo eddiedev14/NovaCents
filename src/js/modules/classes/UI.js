@@ -1,11 +1,11 @@
 import { effectiveID } from "../variables.js";
-import MicroModal from "micromodal";
 import { addCreditCardContainer, creditCardsContainer, effectiveBalance, effectiveCard, effectiveModalTemplate, modalsContainer } from "../selectors.js";
 import { formatThousands, getCardID } from "../utils.js";
 import { formatBalance, formSubmitHandler } from "../components/form.js";
 import { showCardInForm } from "../../account.js";
 import Alert from "./Alert.js";
 import API from "./API.js";
+import { openModal } from "../components/modal.js";
 
 class UI{
     async showCards(){
@@ -160,7 +160,7 @@ class UI{
         editBtn.classList.add("effective__edit");
         editBtn.ariaLabel = "Edit effective";
         editBtn.onclick = e => {
-            MicroModal.show("modal-effective");
+            openModal("modal-effective")
         }
 
         const editIcon = document.createElement("I");
