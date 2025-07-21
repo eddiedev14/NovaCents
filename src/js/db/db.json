@@ -15,6 +15,14 @@
       "card-expiration-date": "12/25",
       "card-entity": "visa",
       "card-balance": 50000
+    },
+    {
+      "id": "1753059236653h8t5bo",
+      "card-number": "2312 3192 3912 9391",
+      "card-owner": "Todo Código",
+      "card-expiration-date": "08/27",
+      "card-entity": "visa",
+      "card-balance": 600000
     }
   ],
   "effective": [
@@ -35,6 +43,10 @@
     {
       "id": "1752959592970fl904m",
       "categorie-name": "Mascotas"
+    },
+    {
+      "id": "1753058457656nyi9zd",
+      "categorie-name": "Higiene"
     }
   ],
   "transactions": []

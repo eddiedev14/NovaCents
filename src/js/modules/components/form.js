@@ -70,6 +70,21 @@ export function cleanForm(modal) {
     }
 }
 
+//* Unique Validation
+
+export async function isResourceUnique(data, uniqueFields, resource, resourceName, isEdit){
+    const fieldsToCheck = {};
+    uniqueFields.forEach(field => fieldsToCheck[field] = data[field]) //Add unique fields to object
+    
+    const results = await API.getResourceByFields(resource, fieldsToCheck);
+    if (!results) return false;
+
+    const duplicate = isEdit ? results.some(resource => resource.id !== data.id) : results.length > 0;
+    if (duplicate) Alert.showAlert("error", `La ${resourceName} ingresada ya existe`);
+
+    return !duplicate;
+}
+
 //* Card
 
 export function formatCardNumber(e) {
@@ -105,19 +120,4 @@ export function isExpirationDateValid(expirationDate){
     }
 
     return true;
-}
-
-//* Unique Validation
-
-export async function isResourceUnique(data, uniqueFields, resource, resourceName, isEdit){
-    const fieldsToCheck = {};
-    uniqueFields.forEach(field => fieldsToCheck[field] = data[field]) //Add unique fields to object
-    
-    const results = await API.getResourceByFields(resource, fieldsToCheck);
-    if (!results) return false;
-
-    const duplicate = isEdit ? results.some(resource => resource.id !== data.id) : results.length > 0;
-    if (duplicate) Alert.showAlert("error", `La ${resourceName} ingresada ya existe`);
-
-    return !duplicate;
 }

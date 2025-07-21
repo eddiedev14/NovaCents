@@ -75,7 +75,7 @@
                 </div>
                 <div class="header__buttons">
                     <button type="button" class="header__btn header__btn--modal" data-modal="modal-categorie">Crear Categoría</button>
-                    <button type="button" class="header__btn header__btn--primary header__btn--modal" data-modal="modal-transaction">Nueva Transacción</button>
+                    <button type="button" class="header__btn header__btn--primary" id="open-transaction-modal-btn">Nueva Transacción</button>
                 </div>
             </div>
         </header>
@@ -135,7 +135,10 @@
 
                                 <div class="form__group">
                                     <label for="transaction-type" class="form__label">Tipo</label>
-                                    <select name="transaction-type" id="transaction-type" class="form__input form__input--select"></select>
+                                    <select name="transaction-type" id="transaction-type" class="form__input form__input--select">
+                                        <option value="income">Ingreso</option>
+                                        <option value="expense">Gastos</option>
+                                    </select>
                                 </div>
                             </div>
 
