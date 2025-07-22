@@ -4,8 +4,15 @@ export function initModals() {
     MicroModal.init()
 }
 
-export function openModal(modalID){
+export function openModal(modalID) {
     MicroModal.show(modalID)
+}
+
+export function openModalTrigger(e){
+    const target = e.target;
+    const modal = target.dataset.modal ? target : target.closest("[data-modal]");
+    const modalID = modal.dataset.modal;
+    openModal(modalID)
 } 
 
 export function closeModal(modalID){

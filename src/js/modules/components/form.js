@@ -1,6 +1,7 @@
 import Alert from "../classes/Alert.js";
 import API from "../classes/API.js";
 import { generateID } from "../utils.js";
+import { effectiveID } from "../variables.js";
 import { updateModalTexts } from "./modal.js";
 
 export function getFormData(form){
@@ -19,14 +20,15 @@ export async function formSubmitHandler(e, { onAdd, onEdit, onSuccess, customVal
     const {data, isValid} = getFormData(form);
     if(!isValid) return;
 
-    //2. Custom validations
+    //2. Parse integer fields
+    integerFields.forEach(field => data[field] = parseInt(data[field]))
+
+    //3. Custom validations
     for (const validation of customValidations) {
         const { field, validate } = validation;
-        if (!validate(data[field])) return
+        const isValid = validate(data[field])
+        if (!isValid) return
     }
-
-    //3. Parse integer fields
-    integerFields.forEach(field => data[field] = parseInt(data[field]))
 
     //4. Define whether you are adding or editing
     const isEdit = !!form.dataset.id;
@@ -70,6 +72,21 @@ export function cleanForm(modal) {
     }
 }
 
+//* Unique Validation
+
+export async function isResourceUnique(data, uniqueFields, resource, resourceName, isEdit){
+    const fieldsToCheck = {};
+    uniqueFields.forEach(field => fieldsToCheck[field] = data[field]) //Add unique fields to object
+    
+    const results = await API.getResourceByFields(resource, fieldsToCheck);
+    if (!results) return false;
+
+    const duplicate = isEdit ? results.some(resource => resource.id !== data.id) : results.length > 0;
+    if (duplicate) Alert.showAlert("error", `La ${resourceName} ingresada ya existe`);
+
+    return !duplicate;
+}
+
 //* Card
 
 export function formatCardNumber(e) {
@@ -79,7 +96,7 @@ export function formatCardNumber(e) {
 }
 
 export function formatBalance(e) {
-    const formattedBalance = e.target.value.replace(/[^0-9]/g, ''); // Remove everything that is not a digit
+    const formattedBalance = e.target.value.replace(/[^0-9]/g, '').replace(/^0+/, ''); // Remove non-numeric characters and leading zeros
     if (e.target.value !== formattedBalance) e.target.value = formattedBalance;
 }
 
@@ -107,17 +124,18 @@ export function isExpirationDateValid(expirationDate){
     return true;
 }
 
-//* Unique Validation
+//* Transaction
 
-export async function isResourceUnique(data, uniqueFields, resource, resourceName, isEdit){
-    const fieldsToCheck = {};
-    uniqueFields.forEach(field => fieldsToCheck[field] = data[field]) //Add unique fields to object
-    
-    const results = await API.getResourceByFields(resource, fieldsToCheck);
-    if (!results) return false;
+export async function validateAndGetBalance(transactionMethodID, transactionType, transactionAmount) {
+    //1. Get the balance of the selected payment method
+    const paymentMethod = transactionMethodID === effectiveID ? await API.getResourceByID("effective", effectiveID) : await API.getResourceByID("cards", transactionMethodID);
+    const balance = paymentMethod["effective-balance"] || paymentMethod["card-balance"];
 
-    const duplicate = isEdit ? results.some(resource => resource.id !== data.id) : results.length > 0;
-    if (duplicate) Alert.showAlert("error", `La ${resourceName} ingresada ya existe`);
+    //2. Compare balance with transaction amount    
+    if (balance < transactionAmount && transactionType === "expense") {
+        Alert.showAlert("error", "Saldo insuficiente para completar la transacción.")
+        return null;
+    }
 
-    return !duplicate;
+    return balance;
 }

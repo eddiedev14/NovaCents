@@ -75,7 +75,7 @@
                 </div>
                 <div class="header__buttons">
                     <button type="button" class="header__btn header__btn--modal" data-modal="modal-categorie">Crear Categoría</button>
-                    <button type="button" class="header__btn header__btn--primary header__btn--modal" data-modal="modal-transaction">Nueva Transacción</button>
+                    <button type="button" class="header__btn header__btn--primary" id="open-transaction-modal-btn">Nueva Transacción</button>
                 </div>
             </div>
         </header>
@@ -116,7 +116,7 @@
                         <h3 class="modal__title" id="modal-transaction-title">Nueva Transacción</h3>
                     </header>
                     <main class="modal__content" id="modal-transaction-content">
-                        <form action="#">
+                        <form action="#" id="transaction-form">
                             <div class="form__group">
                                 <label for="transaction-name" class="form__label">Nombre</label>
                                 <input type="text" name="transaction-name" id="transaction-name" class="form__input">
@@ -135,7 +135,10 @@
 
                                 <div class="form__group">
                                     <label for="transaction-type" class="form__label">Tipo</label>
-                                    <select name="transaction-type" id="transaction-type" class="form__input form__input--select"></select>
+                                    <select name="transaction-type" id="transaction-type" class="form__input form__input--select">
+                                        <option value="income">Ingreso</option>
+                                        <option value="expense">Gasto</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -147,7 +150,7 @@
 
                                 <div class="form__group">
                                     <label for="transaction-amount" class="form__label">Monto</label>
-                                    <input type="number" name="transaction-amount" id="transaction-amount" class="form__input">
+                                    <input type="text" name="transaction-amount" id="transaction-amount" class="form__input">
                                 </div>
                             </div>
 
@@ -157,8 +160,8 @@
                             </div>
 
                             <div class="form__buttons">
-                                <button type="button" class="form__btn" data-micromodal-close>Cancelar</button>
-                                <button type="submit" class="form__btn form__btn--submit">Crear Categoría</button>
+                                <button type="button" class="form__btn form__btn--close" data-micromodal-close>Cancelar</button>
+                                <button type="submit" class="form__btn form__btn--submit">Crear Transacción</button>
                             </div>
                         </form>
                     </main>

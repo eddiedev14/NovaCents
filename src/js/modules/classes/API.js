@@ -1,5 +1,7 @@
 import Alert from "./Alert.js";
 import { closeModal } from "../components/modal.js";
+import { validateAndGetBalance } from "../components/form.js";
+import { effectiveID } from "../variables.js";
 
 class API{
     constructor(){
@@ -29,6 +31,44 @@ class API{
         } catch (error) {
             Alert.showAlert("error", "Ha ocurrido un error mientras se añadía el registro")
         }
+    }
+
+    async addTransaction(object){
+        //1. Validate if the balance is enough
+        const { id, ["transaction-method"]: methodID, ["transaction-type"]: type, ["transaction-amount"]: amount } = object;
+        const balance = await validateAndGetBalance(methodID, type, amount) 
+        if (!balance) return false;
+
+        //2. Calculate the updated balance
+        const updatedBalance = type === "expense" ? balance - amount : balance + amount;
+        
+        //3. Add transaction to the database
+        this.addResource("transactions", object, { resourceName: "transacción", modalId: "modal-transaction" });
+
+        //4. Update payment method balance
+        const paymentMethodURL = methodID === effectiveID ? `${this.resourcesURL["effective"]}/${methodID}` : `${this.resourcesURL["cards"]}/${methodID}`;
+        const fieldsToUpdate = {
+            [methodID === effectiveID ? "effective-balance" : "card-balance"]: updatedBalance
+        };
+
+        try {
+            const res = await fetch(paymentMethodURL, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(fieldsToUpdate)
+            });
+            
+            if (!res.ok) throw new Error("Petición rechazada por el servidor");
+        } catch (error) {
+            Alert.showAlert("error", "Ha ocurrido un error mientras se actualizaba el registro del método de pago. La transacción no ha sido registrada")
+            this.deleteResource("transactions", "transaction", id)
+            return false;
+        }
+
+        closeModal("modal-transaction")
+        return true;
     }
 
     async getResources(resource){
