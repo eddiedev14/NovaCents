@@ -22,13 +22,13 @@
       "card-owner": "Todo Código",
       "card-expiration-date": "08/27",
       "card-entity": "visa",
-      "card-balance": 600000
+      "card-balance": 300000
     }
   ],
   "effective": [
     {
       "id": "1",
-      "effective-balance": 50000
+      "effective-balance": 45000
     }
   ],
   "categories": [
@@ -47,7 +47,50 @@
     {
       "id": "1753058457656nyi9zd",
       "categorie-name": "Higiene"
+    },
+    {
+      "id": "17531429432059lqycv",
+      "categorie-name": "Trabajo"
+    },
+    {
+      "id": "1753143022918jonm2v",
+      "categorie-name": "Prueba Categoria"
+    },
+    {
+      "id": "1753144853868z5egar",
+      "categorie-name": "Redes Sociales"
     }
   ],
-  "transactions": []
+  "transactions": [
+    {
+      "id": "1753142708933m10ft7",
+      "transaction-name": "Arriendo",
+      "transaction-description": "Pago mes de julio",
+      "transaction-method": "1753059236653h8t5bo",
+      "transaction-type": "expense",
+      "transaction-categorie": "17529585190865lc2p9",
+      "transaction-amount": 500000,
+      "transaction-date": "2025-07-21"
+    },
+    {
+      "id": "17531448763417mslc5",
+      "transaction-name": "Pago Youtube",
+      "transaction-description": "Pago mes de julio",
+      "transaction-method": "1753059236653h8t5bo",
+      "transaction-type": "income",
+      "transaction-categorie": "1753144853868z5egar",
+      "transaction-amount": 300000,
+      "transaction-date": "2025-07-21"
+    },
+    {
+      "id": "17531449200072u7ymo",
+      "transaction-name": "Pago Producto Mascota",
+      "transaction-description": "Juguetes",
+      "transaction-method": "1753059236653h8t5bo",
+      "transaction-type": "expense",
+      "transaction-categorie": "1752959592970fl904m",
+      "transaction-amount": 100000,
+      "transaction-date": "2025-07-21"
+    }
+  ]
 }

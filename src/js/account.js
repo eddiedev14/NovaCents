@@ -42,25 +42,3 @@ cardForm.addEventListener("submit", (e) => {
         modalID: "modal-card"
     })
 })
-
-//* Functions
-
-//Function to display the information of the card selected in the form.
-export async function showCardInForm(id) {
-    const selectedCard = await API.getResourceByID("cards", id)
-    if (!selectedCard) return;
-
-    const { ["card-number"]: cardNumber, ["card-owner"]: cardOwner, ["card-expiration-date"]: cardExpirationDate, ["card-entity"]: cardEntity, ["card-balance"]: cardBalance } = selectedCard;
-
-    cardForm.dataset.id = id;
-    cardNumberInput.value = cardNumber;
-    cardOwnerInput.value = cardOwner;
-    cardExpirationDateInput.value = cardExpirationDate;
-    cardEntityInput.value = cardEntity;
-    cardBalanceInput.value = cardBalance;
-    cardBalanceInput.setAttribute("readonly", "true")
-
-    const modal = document.querySelector("#modal-card");
-    updateModalTexts("Tarjeta", "edit", modal)
-    openModal("modal-card")
-}

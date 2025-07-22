@@ -1,18 +1,17 @@
 import { effectiveID } from "../variables.js";
-import { addCreditCardContainer, creditCardsContainer, effectiveBalance, effectiveCard, effectiveModalTemplate, modalsContainer } from "../selectors.js";
+import { addCreditCardContainer, cardBalanceInput, cardEntityInput, cardExpirationDateInput, cardForm, cardNumberInput, cardOwnerInput, creditCardsContainer, effectiveBalance, effectiveCard, effectiveModalTemplate, modalsContainer } from "../selectors.js";
 import { formatThousands, getCardID } from "../utils.js";
 import { formatBalance, formSubmitHandler } from "../components/form.js";
-import { showCardInForm } from "../../account.js";
 import Alert from "./Alert.js";
 import API from "./API.js";
-import { openModal } from "../components/modal.js";
+import { openModal, updateModalTexts } from "../components/modal.js";
 
 class UI{
     async showCards(){
         const cards = await API.getResources("cards");
 
         //Clean the credit cards container
-        this.cleanContainer(creditCardsContainer)
+        this.cleanContainerExcept(creditCardsContainer, "credit__card--add")
         
         cards.forEach(card => {
             const {id, ["card-number"]: cardNumber, ["card-owner"]: cardOwner, ["card-expiration-date"]: cardExpirationDate, ["card-entity"]: cardEntity, ["card-balance"]: cardBalance} = card;
@@ -93,7 +92,7 @@ class UI{
             editBtn.ariaLabel = "Edit card";
             editBtn.onclick = e => {
                 const cardID = getCardID(e.target);
-                showCardInForm(cardID)
+                this.showCardInForm(cardID)
             }
 
             const editIcon = document.createElement("I");
@@ -193,10 +192,36 @@ class UI{
         })
     }
 
+    //Function to display the information of the card selected in the form.
+    async showCardInForm(id) {
+        const selectedCard = await API.getResourceByID("cards", id)
+        if (!selectedCard) return;
+
+        const { ["card-number"]: cardNumber, ["card-owner"]: cardOwner, ["card-expiration-date"]: cardExpirationDate, ["card-entity"]: cardEntity, ["card-balance"]: cardBalance } = selectedCard;
+
+        cardForm.dataset.id = id;
+        cardNumberInput.value = cardNumber;
+        cardOwnerInput.value = cardOwner;
+        cardExpirationDateInput.value = cardExpirationDate;
+        cardEntityInput.value = cardEntity;
+        cardBalanceInput.value = cardBalance;
+        cardBalanceInput.setAttribute("readonly", "true")
+
+        const modal = document.querySelector("#modal-card");
+        updateModalTexts("Tarjeta", "edit", modal)
+        openModal("modal-card")
+    }
+
     cleanContainer(container){
+        while (container.firstElementChild) {
+            container.firstElementChild.remove()
+        }
+    }
+
+    cleanContainerExcept(container, exceptClass){
         const children = Array.from(container.children);
         for (const child of children) {
-            if (!child.classList.contains("credit__card--add")) {
+            if (!child.classList.contains(exceptClass)) {
                 child.remove();
             }
         }

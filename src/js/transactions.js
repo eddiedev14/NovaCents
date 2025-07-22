@@ -1,10 +1,11 @@
 import { effectiveID } from "./modules/variables.js";
-import { categorieForm, closeButtons, openModalsBtns, openTransactionModalBtn, sidebar, sidebarMenu, transactionCategorieInput, transactionMethodInput } from "./modules/selectors.js";
+import { categorieForm, closeButtons, openModalsBtns, openTransactionModalBtn, sidebar, sidebarMenu, transactionAmountInput, transactionCategorieInput, transactionForm, transactionMethodInput } from "./modules/selectors.js";
 import { closeSidebar, openSidebar } from "./modules/components/sidebar.js";
 import { initModals, openModal, openModalTrigger } from "./modules/components/modal.js";
-import { cleanForm, formSubmitHandler, isResourceUnique } from "./modules/components/form.js";
+import { cleanForm, formatBalance, formSubmitHandler, isResourceUnique } from "./modules/components/form.js";
 import API from "./modules/classes/API.js";
 import Alert from "./modules/classes/Alert.js";
+import UI from "./modules/classes/UI.js";
 
 //* Event Listeners
 document.addEventListener("DOMContentLoaded", initModals)
@@ -28,6 +29,18 @@ categorieForm.addEventListener("submit", (e) => {
     })
 })
 
+//* Transaction form
+transactionAmountInput.addEventListener("input", formatBalance)
+
+transactionForm.addEventListener("submit", (e) => {
+    formSubmitHandler(e, {
+        onAdd: async (resource) => await API.addTransaction(resource),
+        onEdit: async (resource) => "Pendiente",
+        integerFields: ["transaction-amount"],
+        modalID: "modal-transaction"
+    })
+})
+
 //* Functions
 
 async function loadTransactionForm() {
@@ -35,6 +48,7 @@ async function loadTransactionForm() {
         const [cards, effective, categories] = await Promise.all([API.getResources("cards"), API.getResourceByID("effective", effectiveID), API.getResources("categories")]);
         
         //1. Show payment methods
+        UI.cleanContainer(transactionMethodInput);
 
         //1.1 Effective
         const { ["effective-balance"]: effectiveBalance } = effective;
@@ -62,6 +76,8 @@ async function loadTransactionForm() {
         })
 
         //2. Show categories
+        UI.cleanContainer(transactionCategorieInput);
+
         categories.forEach(categorie => {
             const { id, ["categorie-name"]: categorieName } = categorie;
 

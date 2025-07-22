@@ -18,6 +18,7 @@ export const effectiveModalTemplate = document.querySelector("#modal-effective-t
 //* Forms
 export const cardForm = document.querySelector("#card-form");
 export const categorieForm = document.querySelector("#categorie-form");
+export const transactionForm = document.querySelector("#transaction-form")
 
 export const closeButtons = document.querySelectorAll(".form__btn--close");
 
@@ -32,3 +33,4 @@ export const cardBalanceInput = document.querySelector("#card-balance");
 export const openTransactionModalBtn = document.querySelector("#open-transaction-modal-btn");
 export const transactionMethodInput = document.querySelector("#transaction-method");
 export const transactionCategorieInput = document.querySelector("#transaction-categorie")
+export const transactionAmountInput = document.querySelector("#transaction-amount");
