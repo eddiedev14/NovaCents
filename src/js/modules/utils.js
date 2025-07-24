@@ -9,3 +9,5 @@ export function formatThousands(balance) {
 export function getCardID(element){
   return element.closest(".credit__card").dataset.id;
 }
+
+export const maskCardNumber = (number) => `**** ${number.replace(/\s+/g, '').slice(-4)}`

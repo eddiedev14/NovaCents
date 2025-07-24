@@ -28,7 +28,7 @@
   "effective": [
     {
       "id": "1",
-      "effective-balance": 45000
+      "effective-balance": 25000
     }
   ],
   "categories": [
@@ -91,6 +91,16 @@
       "transaction-categorie": "1752959592970fl904m",
       "transaction-amount": 100000,
       "transaction-date": "2025-07-21"
+    },
+    {
+      "id": "1753392672008pp65pp",
+      "transaction-name": "Compra Medicamentos",
+      "transaction-description": "Comprar medicamentos",
+      "transaction-method": "1",
+      "transaction-type": "expense",
+      "transaction-categorie": "1753058457656nyi9zd",
+      "transaction-amount": 20000,
+      "transaction-date": "2025-07-24"
     }
   ]
 }

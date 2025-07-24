@@ -3,12 +3,19 @@ import { categorieForm, closeButtons, openModalsBtns, openTransactionModalBtn, s
 import { closeSidebar, openSidebar } from "./modules/components/sidebar.js";
 import { initModals, openModal, openModalTrigger } from "./modules/components/modal.js";
 import { cleanForm, formatBalance, formSubmitHandler, isResourceUnique } from "./modules/components/form.js";
+import { initDatatable } from "./modules/components/datatable.js";
 import API from "./modules/classes/API.js";
 import Alert from "./modules/classes/Alert.js";
 import UI from "./modules/classes/UI.js";
+import { maskCardNumber } from "./modules/utils.js";
 
 //* Event Listeners
-document.addEventListener("DOMContentLoaded", initModals)
+document.addEventListener("DOMContentLoaded", () => {
+    initModals();
+    initDatatable();
+})
+
+//* Sidebar
 sidebarMenu.addEventListener("click", openSidebar);
 sidebar.addEventListener("focusout", closeSidebar);
 
@@ -42,6 +49,43 @@ transactionForm.addEventListener("submit", (e) => {
 })
 
 //* Functions
+
+export async function formatTableTransactions(){
+    const transactions = await API.getResources("transactions");
+
+    const formattedTransactions = await Promise.all(
+        transactions.map(async (transaction) => {
+            const { ["transaction-categorie"]: categorie, ["transaction-method"]: method } = transaction;
+
+            //1. Get the categorie & payment method
+            const isEffectiveMethod = method === effectiveID;
+            const promises = [
+                API.getResourceByID("categories", categorie),
+                isEffectiveMethod ? Promise.resolve(null) : API.getResourceByID("cards", method)
+            ];
+
+            try {
+                const [ categorieData, methodData ] = await Promise.all(promises);
+                
+                const categorieName = categorieData["categorie-name"];
+                const paymentMethod = isEffectiveMethod ? "Efectivo" : maskCardNumber(methodData["card-number"]);
+                const paymentEntity = isEffectiveMethod ? null : methodData["card-entity"];
+
+                return ({
+                    ...transaction,
+                    "transaction-categorie": categorieName,
+                    "transaction-method": paymentMethod,
+                    "transaction-entity": paymentEntity
+                })
+            } catch (error) {
+                Alert.showAlert("error", "Ha ocurrido un error obteniendo las transacciones")
+                setTimeout(() => window.location.reload(), 1500);
+            }
+        })
+    )
+
+    return formattedTransactions
+}
 
 async function loadTransactionForm() {
     try {
