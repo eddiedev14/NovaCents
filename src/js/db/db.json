@@ -28,7 +28,7 @@
   "effective": [
     {
       "id": "1",
-      "effective-balance": 25000
+      "effective-balance": 22000
     }
   ],
   "categories": [
@@ -100,6 +100,16 @@
       "transaction-type": "expense",
       "transaction-categorie": "1753058457656nyi9zd",
       "transaction-amount": 20000,
+      "transaction-date": "2025-07-24"
+    },
+    {
+      "id": "17534107472981ua93b",
+      "transaction-name": "Desayuna",
+      "transaction-description": "Compra del desayuno",
+      "transaction-method": "1",
+      "transaction-type": "expense",
+      "transaction-categorie": "1752959260826rxob1x",
+      "transaction-amount": 3000,
       "transaction-date": "2025-07-24"
     }
   ]
