@@ -2,6 +2,10 @@
 export const sidebar = document.querySelector(".nav");
 export const sidebarMenu = document.querySelector("#sidebar__menu")
 
+//* Main
+export const main = document.querySelector("main")
+export const loader = document.querySelector(".loader");
+
 //* Modal
 export const openModalsBtns = document.querySelectorAll(".header__btn--modal")
 export const modalsContainer = document.querySelector(".modals")
@@ -14,6 +18,9 @@ export const addCreditCardContainer = document.querySelector(".credit__card--add
 export const effectiveCard = document.querySelector(".card__effective");
 export const effectiveBalance = document.querySelector(".effective__balance");
 export const effectiveModalTemplate = document.querySelector("#modal-effective-template");
+
+//* Transactions Datatatable
+export const table = document.querySelector("#transactions-table")
 
 //* Forms
 export const cardForm = document.querySelector("#card-form");

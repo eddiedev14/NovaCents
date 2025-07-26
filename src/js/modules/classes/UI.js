@@ -1,5 +1,5 @@
 import { effectiveID } from "../variables.js";
-import { addCreditCardContainer, cardBalanceInput, cardEntityInput, cardExpirationDateInput, cardForm, cardNumberInput, cardOwnerInput, creditCardsContainer, effectiveBalance, effectiveCard, effectiveModalTemplate, modalsContainer } from "../selectors.js";
+import { addCreditCardContainer, cardBalanceInput, cardEntityInput, cardExpirationDateInput, cardForm, cardNumberInput, cardOwnerInput, creditCardsContainer, effectiveBalance, effectiveCard, effectiveModalTemplate, main, modalsContainer, table } from "../selectors.js";
 import { formatThousands, getCardID } from "../utils.js";
 import { formatBalance, formSubmitHandler } from "../components/form.js";
 import Alert from "./Alert.js";
@@ -210,6 +210,39 @@ class UI{
         const modal = document.querySelector("#modal-card");
         updateModalTexts("Tarjeta", "edit", modal)
         openModal("modal-card")
+    }
+
+    showTransactionEmptyContainer(){
+        const emptyContainer = document.createElement("DIV");
+        emptyContainer.classList.add("main__empty");
+
+        const emptyImage = document.createElement("IMG");
+        emptyImage.src = "/public/images/empty-transactions.png";
+        emptyImage.alt = "Empty Transactions Illustration";
+        
+        const emptyContent = document.createElement("DIV");
+        emptyContent.classList.add("empty__content");
+
+        const emptyTitle = document.createElement("H5");
+        emptyTitle.classList.add("empty__title")
+        emptyTitle.textContent = "No hay transacciones todavía"
+
+        const emptyParagraph = document.createElement("P");
+        emptyParagraph.classList.add("empty__paragraph")
+        emptyParagraph.textContent = "Empieza a registrar tus movimientos y verás tus transacciones aquí"
+
+        emptyContent.appendChild(emptyTitle)
+        emptyContent.appendChild(emptyParagraph);
+
+        emptyContainer.appendChild(emptyImage);
+        emptyContainer.appendChild(emptyContent);
+
+        main.insertBefore(emptyContainer, table)
+    }
+
+    removeDOMElement(domClass){
+        const emptyContainer = document.querySelector(`.${domClass}`);
+        if (emptyContainer) emptyContainer.remove();
     }
 
     cleanContainer(container){

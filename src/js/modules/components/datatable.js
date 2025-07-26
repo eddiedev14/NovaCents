@@ -4,13 +4,24 @@ import DataTable from 'datatables.net-dt';
 import 'datatables.net-buttons-dt';
 import 'datatables.net-buttons/js/buttons.html5.mjs';
 import 'datatables.net-responsive-dt';
+import { loader } from '../selectors.js';
 import { formatTableTransactions } from '../../transactions.js';
+import UI from '../classes/UI.js';
 
 pdfmake.vfs = pdfFonts?.default?.pdfMake?.vfs || pdfFonts?.pdfMake?.vfs;
 DataTable.Buttons.pdfMake(pdfmake);
 
 export async function initDatatable() {
-    const transactions = await formatTableTransactions(); 
+    const transactions = await formatTableTransactions();
+
+    //Validate number of transactions
+    if (transactions.length === 0) {
+        UI.showTransactionEmptyContainer();
+        loader.classList.add("hide")
+        return;
+    }else{
+        UI.removeDOMElement("main__empty")
+    }
 
     const table = new DataTable("#transactions-table", {
         data: transactions,
@@ -51,7 +62,7 @@ export async function initDatatable() {
                 render: (row) => {
                     return `<div class="transactions__actions">
                                 <button class="transaction__action transaction__action--edit"><i class="ri-pencil-fill"></i></button>
-                                <button class="transaction__action transaction__action--edit"><i class="ri-delete-bin-7-fill"></i></button>
+                                <button class="transaction__action transaction__action--delete"><i class="ri-delete-bin-7-fill"></i></button>
                             </div>`
                 }
             }
@@ -96,8 +107,11 @@ export async function initDatatable() {
                 }
             }
         ],
+        responsive: true,
         language: {
             url: "/src/js/json/datatables-spanish.json"
         }
     })
+
+    loader.classList.add("hide")
 }

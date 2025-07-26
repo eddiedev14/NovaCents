@@ -1,0 +1,29 @@
+.main__empty{
+    width: 320px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.main__empty img{
+    width: 80%;
+}
+
+.empty__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+}
+
+.empty__title{
+    font-size: 22px;
+}
+
+.empty__paragraph{
+    font-weight: 300;
+}

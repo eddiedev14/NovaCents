@@ -5,6 +5,10 @@
     position: relative;
 }
 
+.loader.hide{
+    display: none;
+}
+
 .loader:before {
     content: '';
     width: 48px;
