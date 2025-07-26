@@ -1,7 +1,8 @@
-import Alert from "./Alert.js";
+import { effectiveID } from "../variables.js";
 import { closeModal } from "../components/modal.js";
 import { validateAndGetBalance } from "../components/form.js";
-import { effectiveID } from "../variables.js";
+import { addSingleTransctionToTable } from "../components/datatable.js";
+import Alert from "./Alert.js";
 
 class API{
     constructor(){
@@ -43,7 +44,8 @@ class API{
         const updatedBalance = type === "expense" ? balance - amount : balance + amount;
         
         //3. Add transaction to the database
-        this.addResource("transactions", object, { resourceName: "transacción", modalId: "modal-transaction" });
+        const transactionAdded = this.addResource("transactions", object, { resourceName: "transacción", modalId: "modal-transaction" });
+        if (!transactionAdded) return false;
 
         //4. Update payment method balance
         const paymentMethodURL = methodID === effectiveID ? `${this.resourcesURL["effective"]}/${methodID}` : `${this.resourcesURL["cards"]}/${methodID}`;
@@ -67,7 +69,12 @@ class API{
             return false;
         }
 
+        //5. Close Modal
         closeModal("modal-transaction")
+
+        //6. Update datatable
+        addSingleTransctionToTable(object)
+
         return true;
     }
 

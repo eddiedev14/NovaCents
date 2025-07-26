@@ -23,12 +23,20 @@
       "card-expiration-date": "08/27",
       "card-entity": "visa",
       "card-balance": 300000
+    },
+    {
+      "id": "1753541358515qbk5xi",
+      "card-number": "2391 9231 2300 1301",
+      "card-owner": "Eddie",
+      "card-expiration-date": "12/25",
+      "card-entity": "nequi",
+      "card-balance": 380000
     }
   ],
   "effective": [
     {
       "id": "1",
-      "effective-balance": 22000
+      "effective-balance": 1162000
     }
   ],
   "categories": [
@@ -111,6 +119,36 @@
       "transaction-categorie": "1752959260826rxob1x",
       "transaction-amount": 3000,
       "transaction-date": "2025-07-24"
+    },
+    {
+      "id": "1753541843404zx45hj",
+      "transaction-name": "Almuerzo",
+      "transaction-description": "Compra del almuerzo",
+      "transaction-method": "1753541358515qbk5xi",
+      "transaction-type": "expense",
+      "transaction-categorie": "1752959260826rxob1x",
+      "transaction-amount": 20000,
+      "transaction-date": "2025-07-26"
+    },
+    {
+      "id": "17535421894975oif5j",
+      "transaction-name": "Mercado",
+      "transaction-description": "Compra del mercado",
+      "transaction-method": "1753541358515qbk5xi",
+      "transaction-type": "expense",
+      "transaction-categorie": "1752959260826rxob1x",
+      "transaction-amount": 100000,
+      "transaction-date": "2025-07-26"
+    },
+    {
+      "id": "1753542258335vu0kz0",
+      "transaction-name": "Pago Sueldo",
+      "transaction-description": "Pago de mi trabajo",
+      "transaction-method": "1",
+      "transaction-type": "income",
+      "transaction-categorie": "17531429432059lqycv",
+      "transaction-amount": 1000000,
+      "transaction-date": "2025-07-26"
     }
   ]
 }

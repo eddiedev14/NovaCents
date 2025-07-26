@@ -52,39 +52,37 @@ transactionForm.addEventListener("submit", (e) => {
 
 export async function formatTableTransactions(){
     const transactions = await API.getResources("transactions");
+    const formattedTransactions = await Promise.all(transactions.map(async (transaction) => formatSingleTransaction(transaction)))
+    return formattedTransactions;
+}
 
-    const formattedTransactions = await Promise.all(
-        transactions.map(async (transaction) => {
-            const { ["transaction-categorie"]: categorie, ["transaction-method"]: method } = transaction;
+export async function formatSingleTransaction(transaction){
+    const { ["transaction-categorie"]: categorie, ["transaction-method"]: method } = transaction;
 
-            //1. Get the categorie & payment method
-            const isEffectiveMethod = method === effectiveID;
-            const promises = [
-                API.getResourceByID("categories", categorie),
-                isEffectiveMethod ? Promise.resolve(null) : API.getResourceByID("cards", method)
-            ];
+    //1. Get the categorie & payment method
+    const isEffectiveMethod = method === effectiveID;
+    const promises = [
+        API.getResourceByID("categories", categorie),
+        isEffectiveMethod ? Promise.resolve(null) : API.getResourceByID("cards", method)
+    ];
 
-            try {
-                const [ categorieData, methodData ] = await Promise.all(promises);
-                
-                const categorieName = categorieData["categorie-name"];
-                const paymentMethod = isEffectiveMethod ? "Efectivo" : maskCardNumber(methodData["card-number"]);
-                const paymentEntity = isEffectiveMethod ? null : methodData["card-entity"];
+    try {
+        const [ categorieData, methodData ] = await Promise.all(promises);
+        
+        const categorieName = categorieData["categorie-name"];
+        const paymentMethod = isEffectiveMethod ? "Efectivo" : maskCardNumber(methodData["card-number"]);
+        const paymentEntity = isEffectiveMethod ? null : methodData["card-entity"];
 
-                return ({
-                    ...transaction,
-                    "transaction-categorie": categorieName,
-                    "transaction-method": paymentMethod,
-                    "transaction-entity": paymentEntity
-                })
-            } catch (error) {
-                Alert.showAlert("error", "Ha ocurrido un error obteniendo las transacciones")
-                setTimeout(() => window.location.reload(), 1500);
-            }
+        return ({
+            ...transaction,
+            "transaction-categorie": categorieName,
+            "transaction-method": paymentMethod,
+            "transaction-entity": paymentEntity
         })
-    )
-
-    return formattedTransactions
+    } catch (error) {
+        Alert.showAlert("error", "Ha ocurrido un error obteniendo las transacciones")
+        setTimeout(() => window.location.reload(), 1500);
+    }
 }
 
 async function loadTransactionForm() {

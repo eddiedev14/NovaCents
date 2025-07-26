@@ -4,12 +4,14 @@ import DataTable from 'datatables.net-dt';
 import 'datatables.net-buttons-dt';
 import 'datatables.net-buttons/js/buttons.html5.mjs';
 import 'datatables.net-responsive-dt';
-import { loader } from '../selectors.js';
-import { formatTableTransactions } from '../../transactions.js';
+import { loader, table } from '../selectors.js';
+import { formatSingleTransaction, formatTableTransactions } from '../../transactions.js';
 import UI from '../classes/UI.js';
 
 pdfmake.vfs = pdfFonts?.default?.pdfMake?.vfs || pdfFonts?.pdfMake?.vfs;
 DataTable.Buttons.pdfMake(pdfmake);
+
+let datatable;
 
 export async function initDatatable() {
     const transactions = await formatTableTransactions();
@@ -23,7 +25,7 @@ export async function initDatatable() {
         UI.removeDOMElement("main__empty")
     }
 
-    const table = new DataTable("#transactions-table", {
+    datatable = new DataTable("#transactions-table", {
         data: transactions,
         columns: [
             { 
@@ -114,4 +116,10 @@ export async function initDatatable() {
     })
 
     loader.classList.add("hide")
+}
+
+export async function addSingleTransctionToTable(transaction) {
+    const formattedTransaction = await formatSingleTransaction(transaction)
+    UI.removeDOMElement("main__empty");
+    datatable.row.add(formattedTransaction).draw();
 }
